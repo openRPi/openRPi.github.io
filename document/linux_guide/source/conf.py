@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# linux_gpio_guide documentation build configuration file, created by
-# sphinx-quickstart on Mon Jul 14 16:09:16 2014.
+# 简明 Linux 系统指导 documentation build configuration file, created by
+# sphinx-quickstart on Thu Jul 17 19:17:03 2014.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -34,7 +34,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
+    'sphinx.ext.pngmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
 ]
@@ -52,8 +52,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'简明 Linux GPIO 指导'
-copyright = u'2014, concefly'
+project = u'简明 Linux 系统指导'
+copyright = u'2014, h.wenjian'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -107,7 +107,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinxdoc'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -185,7 +185,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'linux_gpio_guidedoc'
+htmlhelp_basename = 'Linuxdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -205,8 +205,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'linux_gpio_guide.tex', u'linux\\_gpio\\_guide Documentation',
-   u'concefly', 'manual'),
+  ('index', 'Linux.tex', u'简明 Linux 系统指导 Documentation',
+   u'h.wenjian', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -221,7 +221,7 @@ latex_documents = [
 #latex_show_pagerefs = False
 
 # If true, show URL addresses after external links.
-#latex_show_urls = False
+#latex_show_urls = False	
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
@@ -235,8 +235,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'linux_gpio_guide', u'linux_gpio_guide Documentation',
-     [u'concefly'], 1)
+    ('index', 'linux', u'简明 Linux 系统指导 Documentation',
+     [u'h.wenjian'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -249,8 +249,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'linux_gpio_guide', u'linux_gpio_guide Documentation',
-   u'concefly', 'linux_gpio_guide', 'One line description of project.',
+  ('index', 'Linux', u'简明 Linux 系统指导 Documentation',
+   u'h.wenjian', 'Linux', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -265,76 +265,6 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
-
-
-# -- Options for Epub output ----------------------------------------------
-
-# Bibliographic Dublin Core info.
-epub_title = u'linux_gpio_guide'
-epub_author = u'concefly'
-epub_publisher = u'concefly'
-epub_copyright = u'2014, concefly'
-
-# The basename for the epub file. It defaults to the project name.
-#epub_basename = u'linux_gpio_guide'
-
-# The HTML theme for the epub output. Since the default themes are not optimized
-# for small screen space, using the same theme for HTML and epub output is
-# usually not wise. This defaults to 'epub', a theme designed to save visual
-# space.
-#epub_theme = 'epub'
-
-# The language of the text. It defaults to the language option
-# or en if the language is not set.
-#epub_language = ''
-
-# The scheme of the identifier. Typical schemes are ISBN or URL.
-#epub_scheme = ''
-
-# The unique identifier of the text. This can be a ISBN number
-# or the project homepage.
-#epub_identifier = ''
-
-# A unique identification for the text.
-#epub_uid = ''
-
-# A tuple containing the cover image and cover page html template filenames.
-#epub_cover = ()
-
-# A sequence of (type, uri, title) tuples for the guide element of content.opf.
-#epub_guide = ()
-
-# HTML files that should be inserted before the pages created by sphinx.
-# The format is a list of tuples containing the path and title.
-#epub_pre_files = []
-
-# HTML files shat should be inserted after the pages created by sphinx.
-# The format is a list of tuples containing the path and title.
-#epub_post_files = []
-
-# A list of files that should not be packed into the epub file.
-epub_exclude_files = ['search.html']
-
-# The depth of the table of contents in toc.ncx.
-#epub_tocdepth = 3
-
-# Allow duplicate toc entries.
-#epub_tocdup = True
-
-# Choose between 'default' and 'includehidden'.
-#epub_tocscope = 'default'
-
-# Fix unsupported image types using the PIL.
-#epub_fix_images = False
-
-# Scale large images.
-#epub_max_image_width = 0
-
-# How to display URL addresses: 'footnote', 'no', or 'inline'.
-#epub_show_urls = 'inline'
-
-# If false, no index is generated.
-#epub_use_index = True
 
 
 # Example configuration for intersphinx: refer to the Python standard library.

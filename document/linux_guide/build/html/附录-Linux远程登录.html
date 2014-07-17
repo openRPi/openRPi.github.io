@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>附录-Linux远程登录 &mdash; 简明 Linux 系统指导 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="简明 Linux 系统指导 1.0.0 documentation" href="index.html" />
+    <link rel="prev" title="内核与应用程序" href="内核与应用程序.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="内核与应用程序.html" title="内核与应用程序"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">附录-Linux远程登录</a><ul>
+<li><a class="reference internal" href="#puttylinux">使用Putty登录Linux</a></li>
+<li><a class="reference internal" href="#sshlinux">使用ssh命令登录Linux</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="内核与应用程序.html"
+                        title="previous chapter">内核与应用程序</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/附录-Linux远程登录.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="linux">
+<h1>附录-Linux远程登录<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h1>
+<p>Linux大多应用于服务器，而服务器不可能像PC一样放在办公室，它们是放在IDC机房的，所以平时登录linux系统都是通过远程登录的。Linux系统中是通过ssh服务实现的远程登录功能。默认ssh服务开启了22端口，而且当我们安装完系统时，这个服务已经安装，并且是开机启动的。所以不需要我们额外配置什么就能直接远程登录linux系统。ssh服务的配置文件为 /etc/ssh/sshd_config，你可以修改这个配置文件来实现你想要的ssh服务。比如你可以更改启动端口为36000.</p>
+<p>如果你是windows的操作系统，则Linux远程登录需要在我们的机器上额外安装一个终端软件。目前比较常见的终端登录软件有SecureCRT, Putty, SSH SecureShell等，很多朋友喜欢用SecureCRT因为它的功能是很强大的，而笔者喜欢用Putty，只是因为它的小巧以及非常漂亮的颜色显示。不管你使用哪一个客户端软件，最终的目的只有一个，就是远程登录到linux服务器上。这些软件网上有很多免费版的。下面笔者介绍如何使用Putty登录远程linux服务器。</p>
+<div class="section" id="puttylinux">
+<h2>使用Putty登录Linux<a class="headerlink" href="#puttylinux" title="Permalink to this headline">¶</a></h2>
+<p>如果你下载了putty，请直接运行putty.exe</p>
+<img alt="http://www.92csz.com/study/linux/images/5_1.png" src="http://www.92csz.com/study/linux/images/5_1.png" />
+<p>因为是远程登录，所以你要登录的服务器一定会有一个IP或者主机名。请在Host Name( or IP address) 下面的框中输入你要登录的远程服务器IP，然后回车。</p>
+<img alt="http://www.92csz.com/study/linux/images/5_12.png" src="http://www.92csz.com/study/linux/images/5_12.png" />
+<p>此时，提示我们输入要登录的用户名。</p>
+<img alt="http://www.92csz.com/study/linux/images/5_13.png" src="http://www.92csz.com/study/linux/images/5_13.png" />
+<p>输入root 然后回车，再输入密码，就能登录到远程的linux系统了。</p>
+</div>
+<div class="section" id="sshlinux">
+<h2>使用ssh命令登录Linux<a class="headerlink" href="#sshlinux" title="Permalink to this headline">¶</a></h2>
+<p>?</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="内核与应用程序.html" title="内核与应用程序"
+             >previous</a> |</li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, h.wenjian.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
