@@ -8,8 +8,8 @@
     
     <title>Welcome to linux_gpio_guide’s documentation! &mdash; 简明 Linux GPIO 指导 1.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,11 +20,12 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="简明 Linux GPIO 指导 1.0.0 documentation" href="#" /> 
+    <link rel="top" title="简明 Linux GPIO 指导 1.0.0 documentation" href="#" />
+    <link rel="next" title="1. 前言" href="C0_前言.html" /> 
   </head>
   <body>
     <div class="related">
@@ -33,47 +34,20 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="C0_前言.html" title="1. 前言"
+             accesskey="N">next</a> |</li>
         <li><a href="#">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="welcome-to-linux-gpio-guide-s-documentation">
-<h1>Welcome to linux_gpio_guide&#8217;s documentation!<a class="headerlink" href="#welcome-to-linux-gpio-guide-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
-</ul>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Welcome to linux_gpio_guide&#8217;s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-
+  <h4>Next topic</h4>
+  <p class="topless"><a href="C0_前言.html"
+                        title="next chapter">1. 前言</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
+    <li><a href="sources/index.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -91,6 +65,56 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-linux-gpio-guide-s-documentation">
+<h1>Welcome to linux_gpio_guide&#8217;s documentation!<a class="headerlink" href="#welcome-to-linux-gpio-guide-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="C0_前言.html">1. 前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C1_像单片机一样控制树莓派GPIO.html">2. 像单片机一样控制树莓派GPIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C2_充满Linux风格地控制树莓派GPIO.html">3. 充满Linux风格地控制树莓派GPIO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="C2_充满Linux风格地控制树莓派GPIO.html#led">3.1. 徒手点亮一盏LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C2_充满Linux风格地控制树莓派GPIO.html#id1">3.2. 按键检测和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="C2_充满Linux风格地控制树莓派GPIO.html#gpio">3.3. GPIO控制的原理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="C3_真正的GPIO内核驱动.html">4. 真正的GPIO内核驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-GPIO Interfaces.html">5. 附录 - GPIO Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="附录-GPIO Interfaces.html#what-is-a-gpio">5.1. What is a GPIO?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-GPIO Interfaces.html#gpio-conventions">5.2. GPIO conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-GPIO Interfaces.html#what-do-these-conventions-omit">5.3. What do these conventions omit?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-GPIO Interfaces.html#gpio-implementor-s-framework-optional">5.4. GPIO implementor&#8217;s framework (OPTIONAL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-GPIO Interfaces.html#sysfs-interface-for-userspace-optional">5.5. Sysfs Interface for Userspace (OPTIONAL)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="附录-树莓派GPIO编号.html">6. 附录 - 树莓派GPIO编号</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-建立树莓派交叉编译环境.html">7. 附录 - 建立树莓派交叉编译环境</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="附录-建立树莓派交叉编译环境.html#apt-get">7.1. apt-get 安装通用交叉编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-建立树莓派交叉编译环境.html#id2">7.2. 安装树莓派官方交叉编译器</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="附录-交叉编译新内核和驱动模块.html">8. 附录 - 交叉编译新内核和驱动模块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="附录-交叉编译新内核和驱动模块.html#id2">8.1. 建立交叉编译环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-交叉编译新内核和驱动模块.html#id4">8.2. 准备交叉编译需要的代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-交叉编译新内核和驱动模块.html#id5">8.3. 开始交叉编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-交叉编译新内核和驱动模块.html#id6">8.4. 启用 .config 的配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="附录-交叉编译新内核和驱动模块.html#id11">8.5. 安装全新的内核映像、固件和驱动模块</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -99,11 +123,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="C0_前言.html" title="1. 前言"
+             >next</a> |</li>
         <li><a href="#">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, concefly.
+        &copy; Copyright 2014, openRPi.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

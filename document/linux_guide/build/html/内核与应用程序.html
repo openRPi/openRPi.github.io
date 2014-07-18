@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>内核与应用程序 &mdash; 简明 Linux 系统指导 1.0.0 documentation</title>
+    <title>4. 内核与应用程序 &mdash; 简明 Linux 系统指导 1.0.0 documentation</title>
     
     <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="简明 Linux 系统指导 1.0.0 documentation" href="index.html" />
-    <link rel="next" title="shell 与 shell 脚本" href="shell 与 shell 脚本.html" />
-    <link rel="prev" title="用户与用户组" href="用户与用户组.html" /> 
+    <link rel="next" title="5. shell 与 shell 脚本" href="shell 与 shell 脚本.html" />
+    <link rel="prev" title="3. 用户与用户组" href="用户与用户组.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="shell 与 shell 脚本.html" title="shell 与 shell 脚本"
+          <a href="shell 与 shell 脚本.html" title="5. shell 与 shell 脚本"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="用户与用户组.html" title="用户与用户组"
+          <a href="用户与用户组.html" title="3. 用户与用户组"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
       </ul>
@@ -47,12 +47,12 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">内核与应用程序</a><ul>
-<li><a class="reference internal" href="#id2">系统内核</a></li>
-<li><a class="reference internal" href="#id4">应用程序</a></li>
-<li><a class="reference internal" href="#id5">系统调用</a><ul>
-<li><a class="reference internal" href="#id6">什么是系统调用</a></li>
-<li><a class="reference internal" href="#linux">Linux 的系统调用</a></li>
+<li><a class="reference internal" href="#">4. 内核与应用程序</a><ul>
+<li><a class="reference internal" href="#id2">4.1. 系统内核</a></li>
+<li><a class="reference internal" href="#id4">4.2. 应用程序</a></li>
+<li><a class="reference internal" href="#id5">4.3. 系统调用</a><ul>
+<li><a class="reference internal" href="#id6">4.3.1. 什么是系统调用</a></li>
+<li><a class="reference internal" href="#linux">4.3.2. Linux 的系统调用</a></li>
 </ul>
 </li>
 </ul>
@@ -61,10 +61,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="用户与用户组.html"
-                        title="previous chapter">用户与用户组</a></p>
+                        title="previous chapter">3. 用户与用户组</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="shell 与 shell 脚本.html"
-                        title="next chapter">shell 与 shell 脚本</a></p>
+                        title="next chapter">5. shell 与 shell 脚本</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="sources/内核与应用程序.txt"
@@ -92,9 +92,9 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>内核与应用程序<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>4. 内核与应用程序<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>系统内核<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>4.1. 系统内核<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>系统内核是指大多数操作系统的核心部分。它由操作系统中用于管理存储器、文件、外设和系统资源的那些部分组成。操作系统内核通常运行进程，并提供进程间的通信。</p>
 <p>牛津字典中对&#8221;kernel&#8221;一词的定义是：&#8221;较软的、通常是一个坚果可食用的部分。&#8221;当然还有第二种定义：&#8221;某个东西核心或者最重要的部分。&#8221;对Linux来说，它的Kernel无疑属于第二种解释。让我们来看看这个重要的东西是如何工作的，先从一点理论说起。</p>
 <p>广义地来说kernel就是一个软件，它在硬件和运行在计算机(电脑)上的应用程序之间提供了一个层。严格点从计算机科学的角度来说，Linux中的Kernel指的是Linus Torvalds在90年代初期写的那点代码。</p>
@@ -120,20 +120,20 @@
 <p>在这里，你可以看到四个系统调用的例子：打开、读、写和关闭。不谈这段程序语法的细节，重点是：通过这些系统调用，Linux Kernel提供了一个文件的&#8221;错觉&#8221;，屏蔽了读写文件时计算机底层的运作，而是直接以例子中的方式与硬件&#8221;交流&#8221;，这也就是我们所说的抽象（abstraction），将底层的东西以更易懂的方式表达出来。</p>
 </div>
 <div class="section" id="id4">
-<h2>应用程序<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>4.2. 应用程序<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>？</p>
 </div>
 <div class="section" id="id5">
-<h2>系统调用<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>4.3. 系统调用<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id6">
-<h3>什么是系统调用<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3>4.3.1. 什么是系统调用<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>在Linux的世界里，我们经常会遇到系统调用这一术语。系统调用，顾名思义，说的是操作系统提供给用户程序调用的一组“特殊”接口。用户程序可以通过这组“特殊”接口来获得操作系统内核提供的服务，比如用户可以通过文件系统相关的调用请求系统打开文件、关闭文件或读写文件，可以通过时钟相关的系统调用获得系统时间或设置定时器等。</p>
 <p>从逻辑上来说，系统调用可被看成是一个内核与用户空间程序交互的接口——它好比一个中间人，把用户进程的请求传达给内核，待内核把请求处理完毕后再将处理结果送回给用户空间。</p>
 <p>系统服务之所以需要通过系统调用来提供给用户空间的根本原因是为了对系统进行“保护”。因为Linux的运行空间分为 <em>内核空间与用户空间</em> <a class="footnote-reference" href="#id8" id="id7">[2]</a> ，它们各自运行在不同的级别中，逻辑上相互隔离。所以用户进程在通常情况下不允许访问内核数据，也无法使用内核函数，它们只能在用户空间操作用户数据，调用用户空间函数。比如我们熟悉的“hello world”程序（执行时）就是标准的用户空间进程，它使用的打印函数printf就属于用户空间函数，打印的字符“hello word”字符串也属于用户空间数据。</p>
 <p>但是很多情况下，用户进程需要获得系统服务（调用系统程序），这时就必须利用系统提供给用户的“特殊接口”—— 系统调用了。它的特殊性主要在于规定了用户进程进入内核的具体位置；换句话说，用户访问内核的路径是事先规定好的，只能从规定位置进入内核，而不准许肆意跳入内核。有了这样的陷入内核的统一访问路径限制才能保证内核安全无虞。我们可以形象地描述这种机制：作为一个游客，你可以买票要求进入野生动物园，但你必须老老实实地坐在观光车上，按照规定的路线观光游览。当然，不准下车，因为那样太危险，不是让你丢掉小命，就是让你吓坏了野生动物。</p>
 </div>
 <div class="section" id="linux">
-<h3>Linux 的系统调用<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<h3>4.3.2. Linux 的系统调用<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p>对于现代操作系统，系统调用是一种内核与用户空间通讯的普遍手段，Linux系统也不例外。但是Linux系统的系统调用相比很多Unix和windows等系统具有一些独特之处，无处不体现出Linux的设计精髓——简洁和高效。</p>
 <p>Linux系统调用很多地方继承了Unix的系统调用（但不是全部），但Linux相比传统Unix的系统调用做了很多扬弃，它省去了许多Unix系统冗余的系统调用，仅仅保留了最基本和最有用的系统调用，所以Linux全部系统调用只有250个左右（而有些操作系统系统调用多达1000个以上）。</p>
 <p>这些系统调用按照功能逻辑大致可分为</p>
@@ -199,10 +199,10 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="shell 与 shell 脚本.html" title="shell 与 shell 脚本"
+          <a href="shell 与 shell 脚本.html" title="5. shell 与 shell 脚本"
              >next</a> |</li>
         <li class="right" >
-          <a href="用户与用户组.html" title="用户与用户组"
+          <a href="用户与用户组.html" title="3. 用户与用户组"
              >previous</a> |</li>
         <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
       </ul>

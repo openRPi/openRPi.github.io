@@ -10,6 +10,7 @@ Welcome to 简明 Linux 系统指导's documentation!
 
 .. toctree::
 	:maxdepth: 2
+	:numbered: 3
 	
 	初识 Linux
 	文件与目录

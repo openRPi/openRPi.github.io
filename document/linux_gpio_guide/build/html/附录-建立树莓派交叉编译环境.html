@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. 附录 - 建立树莓派交叉编译环境 &mdash; 简明 Linux GPIO 指导 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="简明 Linux GPIO 指导 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="8. 附录 - 交叉编译新内核和驱动模块" href="附录-交叉编译新内核和驱动模块.html" />
+    <link rel="prev" title="6. 附录 - 树莓派GPIO编号" href="附录-树莓派GPIO编号.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="附录-交叉编译新内核和驱动模块.html" title="8. 附录 - 交叉编译新内核和驱动模块"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="附录-树莓派GPIO编号.html" title="6. 附录 - 树莓派GPIO编号"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">7. 附录 - 建立树莓派交叉编译环境</a><ul>
+<li><a class="reference internal" href="#apt-get">7.1. apt-get 安装通用交叉编译器</a></li>
+<li><a class="reference internal" href="#id2">7.2. 安装树莓派官方交叉编译器</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="附录-树莓派GPIO编号.html"
+                        title="previous chapter">6. 附录 - 树莓派GPIO编号</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="附录-交叉编译新内核和驱动模块.html"
+                        title="next chapter">8. 附录 - 交叉编译新内核和驱动模块</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/附录-建立树莓派交叉编译环境.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>7. 附录 - 建立树莓派交叉编译环境<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>自动安装器 <a class="reference external" href="https://github.com/openRPi/tools/tree/master/cross_complier_installer">https://github.com/openRPi/tools/tree/master/cross_complier_installer</a></p>
+<p>建立交叉编译环境的关键是把**交叉编译器加入Linux系统路径**。</p>
+<p>在基于Debian的Linux系统下，可以用包管理器</p>
+<div class="highlight-shell"><div class="highlight"><pre># apt-get install gcc-arm-linux-gnueabi
+</pre></div>
+</div>
+<p>安装通用的ARM交叉编译器。</p>
+<p>以此同时，树莓派官方也提供了4套交叉编译器：</p>
+<ul class="simple">
+<li>arm-bcm2708-linux-gnueabi</li>
+<li>arm-bcm2708hardfp-linux-gnueabi</li>
+<li>gcc-linaro-arm-linux-gnueabihf-raspbian</li>
+<li>gcc-linaro-arm-linux-gnueabihf-raspbian-x64 （运行于64位宿主机）</li>
+</ul>
+<p>除了第四个运行于64位宿主机的交叉编译器外，前3套中任意一个都可以使用。</p>
+<div class="section" id="apt-get">
+<h2>7.1. apt-get 安装通用交叉编译器<a class="headerlink" href="#apt-get" title="Permalink to this headline">¶</a></h2>
+<p>直接执行命令</p>
+<div class="highlight-shell"><div class="highlight"><pre># apt-get install gcc-arm-linux-gnueabi
+</pre></div>
+</div>
+<p>成功执行后，ARM交叉编译器就安装好了。此时可执行命令 <tt class="docutils literal"><span class="pre">`arm-linux-gnueabi-gcc</span> <span class="pre">-v`</span></tt> 查看交叉编译器版本号，例如这样</p>
+<div class="highlight-shell"><div class="highlight"><pre>concefly@ConceflyXBT:~$ arm-linux-gnueabi-gcc -v
+使用内建 specs。
+COLLECT_GCC=arm-linux-gnueabi-gcc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc-cross/arm-linux-gnueabi/4.7/lto-wrapper
+目标：arm-linux-gnueabi
+配置为：../src/configure -v --with-pkgversion=&#39;Ubuntu/Linaro 4.7.3-12ubuntu1&#39; --with-bugurl=file:///usr/share/doc/gcc-4.7/README.Bugs --enable-languages=c,c++,go,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.7 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/arm-linux-gnueabi/include/c++/4.7.3 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-gnu-unique-object --disable-libmudflap --disable-libitm --enable-plugin --with-system-zlib --enable-objc-gc --with-cloog --enable-cloog-backend=ppl --disable-cloog-version-check --disable-ppl-version-check --enable-multiarch --enable-multilib --disable-sjlj-exceptions --with-arch=armv5t --with-float=soft --disable-werror --enable-checking=release --build=i686-linux-gnu --host=i686-linux-gnu --target=arm-linux-gnueabi --program-prefix=arm-linux-gnueabi- --includedir=/usr/arm-linux-gnueabi/include
+线程模型：posix
+gcc 版本 4.7.3 (Ubuntu/Linaro 4.7.3-12ubuntu1)
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>7.2. 安装树莓派官方交叉编译器<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>这里我们要手动配置一下目录。依照正文部分的讨论，我们把[交叉编译器](<a class="reference external" href="https://github.com/raspberrypi/tools">https://github.com/raspberrypi/tools</a>)下载到 /home/YOUR_HOME/project/git/rpi_tools 目录下，然后把交叉编译器加入Linux系统路径。</p>
+<div class="highlight-shell"><div class="highlight"><pre>$ cd ~/project/git
+$ git clone https://github.com/raspberrypi/tools rpi_tools
+</pre></div>
+</div>
+<p>这里我们选用arm-bcm2708-linux-gnueabi这套交叉编译器。</p>
+<p>接下来打开 <tt class="docutils literal"><span class="pre">~/.profile</span></tt> 文件。用户登录系统时，这个文件会被自动执行，因此可以用来配置一些登录自启动的程序。在最后一行加入：</p>
+<div class="highlight-shell"><div class="highlight"><pre>PATH=&quot;/home/concefly/project/git/rpi_tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin:$PATH&quot;
+export PATH
+</pre></div>
+</div>
+<p>保存，关闭文件，执行下面这条命令使PATH生效：</p>
+<div class="highlight-shell"><div class="highlight"><pre>$ source ~/.profile
+</pre></div>
+</div>
+<p>成功执行后，官方的交叉编译器就安装好了。此时可执行命令 <tt class="docutils literal"><span class="pre">arm-bcm2708-linux-gnueabi-gcc</span> <span class="pre">-v</span></tt> 查看交叉编译器版本号，例如这样</p>
+<div class="highlight-shell"><div class="highlight"><pre>concefly@ConceflyXBT:~$ arm-bcm2708-linux-gnueabi-gcc -v
+Using built-in specs.
+COLLECT_GCC=arm-bcm2708-linux-gnueabi-gcc
+COLLECT_LTO_WRAPPER=/home/concefly/project/git/rpi_tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/../libexec/gcc/arm-bcm2708-linux-gnueabi/4.7.1/lto-wrapper
+Target: arm-bcm2708-linux-gnueabi
+Configured with: /home/extra/crosstool/stagingsf/.build/src/gcc-linaro-4.7-2012.04/configure --build=i686-build_pc-linux-gnu --host=i686-build_pc-linux-gnu --target=arm-bcm2708-linux-gnueabi --prefix=/home/dc4/tools/arm-bcm2708/arm-bcm2708-linux-gnueabi --with-sysroot=/home/dc4/tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/arm-bcm2708-linux-gnueabi/sysroot --enable-languages=c,c++ --with-cpu=arm1176jzf-s --with-tune=arm1176jzf-s --with-float=softfp --with-pkgversion=&#39;crosstool-NG 1.15.2&#39; --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --with-gmp=/home/extra/crosstool/stagingsf/.build/arm-bcm2708-linux-gnueabi/buildtools --with-mpfr=/home/extra/crosstool/stagingsf/.build/arm-bcm2708-linux-gnueabi/buildtools --with-mpc=/home/extra/crosstool/stagingsf/.build/arm-bcm2708-linux-gnueabi/buildtools --with-ppl=/home/extra/crosstool/stagingsf/.build/arm-bcm2708-linux-gnueabi/buildtools --with-cloog=/home/extra/crosstool/stagingsf/.build/arm-bcm2708-linux-gnueabi/buildtools --with-libelf=/home/extra/crosstool/stagingsf/.build/arm-bcm2708-linux-gnueabi/buildtools --with-host-libstdcxx=&#39;-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm -L/home/extra/crosstool/stagingsf/.build/arm-bcm2708-linux-gnueabi/buildtools/lib -lpwl&#39; --enable-threads=posix --enable-target-optspace --disable-nls --disable-multilib --with-local-prefix=/home/dc4/tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/arm-bcm2708-linux-gnueabi/sysroot --enable-c99 --enable-long-long --with-float=softfp
+Thread model: posix
+gcc version 4.7.1 20120402 (prerelease) (crosstool-NG 1.15.2)
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="附录-交叉编译新内核和驱动模块.html" title="8. 附录 - 交叉编译新内核和驱动模块"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="附录-树莓派GPIO编号.html" title="6. 附录 - 树莓派GPIO编号"
+             >previous</a> |</li>
+        <li><a href="index.html">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, openRPi.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

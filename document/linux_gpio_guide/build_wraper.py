@@ -13,6 +13,8 @@ def filter_html(name):
 		return True
 	return False
 
+os.chdir(os.path.join("build","html"))
+
 if os.path.exists("static"):
 	os.removedirs("static")
 if os.path.exists("sources"):
