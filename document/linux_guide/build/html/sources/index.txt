@@ -15,6 +15,7 @@ Welcome to 简明 Linux 系统指导's documentation!
 	文件与目录
 	用户与用户组
 	内核与应用程序
+	shell 与 shell 脚本
 	附录-Linux远程登录
 
 .. 
