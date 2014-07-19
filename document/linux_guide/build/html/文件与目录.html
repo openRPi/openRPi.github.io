@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2. 文件与目录 &mdash; 简明 Linux 系统指导 1.0.0 documentation</title>
+    <title>2. 文件与目录 &mdash; 简明 Linux 系统指导 1.0.0 文档</title>
     
-    <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="static/nature_overwrite.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,65 +23,24 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="简明 Linux 系统指导 1.0.0 documentation" href="index.html" />
+    <script type="text/javascript" src="static/translations.js"></script>
+    <link rel="top" title="简明 Linux 系统指导 1.0.0 文档" href="index.html" />
     <link rel="next" title="3. 用户与用户组" href="用户与用户组.html" />
     <link rel="prev" title="1. 初识 Linux" href="初识 Linux.html" /> 
   </head>
   <body>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
           <a href="用户与用户组.html" title="3. 用户与用户组"
-             accesskey="N">next</a> |</li>
+             accesskey="N">下一页</a></li>
         <li class="right" >
           <a href="初识 Linux.html" title="1. 初识 Linux"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+             accesskey="P">上一页</a> |</li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">2. 文件与目录</a><ul>
-<li><a class="reference internal" href="#linux">2.1. linux的文件系统</a></li>
-<li><a class="reference internal" href="#id2">2.2. 绝对路径和相对路径</a></li>
-<li><a class="reference internal" href="#id3">2.3. 文件的所属主以及所属组</a></li>
-<li><a class="reference internal" href="#id4">2.4. linux文件类型</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="初识 Linux.html"
-                        title="previous chapter">1. 初识 Linux</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="用户与用户组.html"
-                        title="next chapter">3. 用户与用户组</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/文件与目录.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -89,16 +48,16 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>2. 文件与目录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>2. 文件与目录<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="linux">
-<h2>2.1. linux的文件系统<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
+<h2>2.1. linux的文件系统<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h2>
 <p>windows的系统格式化硬盘时会指定格式，fat或者ntfs。而linux的文件系统格式为Ext2，或者Ext3。早期的linux使用Ext2格式，目前的linux都使用了Ext3。</p>
 <p>Ext2文件系统虽然是高效稳定的。但是，随着Linux系统在关键业务中的应用，Linux文件系统的弱点也渐渐显露出来了，因为Ext2文件系统是非日志文件系统。这在关键行业的应用是一个致命的弱点。Ext3文件系统是直接从Ext2文件系统发展而来，Ext3文件系统带有日志功能，可以跟踪记录文件系统的变化，并将变化内容写入日志，写操作首先是对日志记录文件进行操作，若整个写操作由于某种原因(如系统掉电)而中断，系统重启时，会根据日志记录来恢复中断前的写操作，而且这个过程费时极短。目前Ext3文件系统已经非常稳定可靠。它完全兼容Ext2文件系统。用户可以平滑地过渡到一个日志功能健全的文件系统中来。这实际上了也是ext3日志文件系统初始设计的初衷。</p>
 <p>Linux文件系统在windows中是不能识别的，但是在linux系统中你可以挂载的windows的文件系统。linux目前支持MS-DOS，VFAT，FAT，BSD,NTFS等格式。</p>
 <p>Ext3文件系统为大多数Linux发行版默认使用的文件系统。除了Ext3文件系统外，有些linux发行版例如SuSE默认的文件系统为reiserFS。Ext3独特的优点就是易于转换，很容易在 Ext2 和 Ext3 之间相互转换，而具有良好的兼容性。而其它优点 ReiserFS 都有，而且还比 Ext3 做得更好。如高效的磁盘空间利用和独特的搜寻方式都是 Ext3 所不具备的，速度上 Ext3 也不能和 ReiserFS 相媲美，在实际使用过程中，reiserFS 也更加安全高效。</p>
 </div>
 <div class="section" id="id2">
-<h2>2.2. 绝对路径和相对路径<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>2.2. 绝对路径和相对路径<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p>在linux的世界中，存在着绝对路径和相对路径。</p>
 <dl class="docutils">
 <dt>绝对路径：</dt>
@@ -114,7 +73,7 @@ $ cd test
 <p>此时用户所在的路径为 <tt class="docutils literal"><span class="pre">/home/test</span></tt> 。第一个 <tt class="docutils literal"><span class="pre">cd</span></tt> 命令后跟 <tt class="docutils literal"><span class="pre">/home</span></tt> 第二个 <tt class="docutils literal"><span class="pre">cd</span></tt> 命令后跟 <tt class="docutils literal"><span class="pre">test</span></tt> ，并没有斜杠，这个 <tt class="docutils literal"><span class="pre">test</span></tt> 是相对于 <tt class="docutils literal"><span class="pre">/home</span></tt> 目录来讲的，所以叫做相对路径。</p>
 </div>
 <div class="section" id="id3">
-<h2>2.3. 文件的所属主以及所属组<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>2.3. 文件的所属主以及所属组<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>一个linux目录或者文件，都会有一个所属用户和所属组。</p>
 <dl class="docutils">
 <dt>所属用户：</dt>
@@ -127,7 +86,7 @@ $ cd test
 <p>Linux文件属性不仅规定了所属用户和所属组，还规定了所属用户（user）、所属组（group）以及其他用户（others）对该文件的权限。</p>
 </div>
 <div class="section" id="id4">
-<h2>2.4. linux文件类型<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>2.4. linux文件类型<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>若读者有Dos和Windows经验，就大概知道系统存在若干类型的文件，如系统文件、只读文件、隐含文件等。在Linux/Unix下，文件类型远比Dos/Windows系统多样和复杂。</p>
 <p>Linux文件类型和Linux文件的文件名所代表的意义是两个不同的概念。Linux系统主要根据文件头信息来判断文件类型，扩展名并非决定因素。</p>
 <p>Linux文件类型常见的有：普通文件、目录、字符设备文件、块设备文件、符号链接文件等。</p>
@@ -154,26 +113,54 @@ $ cd test
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">內容目录</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="初识 Linux.html">1. 初识 Linux</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">2. 文件与目录</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux">2.1. linux的文件系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.2. 绝对路径和相对路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.3. 文件的所属主以及所属组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.4. linux文件类型</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="用户与用户组.html">3. 用户与用户组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="内核与应用程序.html">4. 内核与应用程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell 与 shell 脚本.html">5. shell 与 shell 脚本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-Linux远程登录.html">6. 附录-Linux远程登录</a></li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="初识 Linux.html"
+                        title="上一章">1. 初识 Linux</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="用户与用户组.html"
+                        title="下一章">3. 用户与用户组</a></p>
+  <h3>本页</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/文件与目录.txt"
+           rel="nofollow">显示源代码</a></li>
+  </ul>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
           <a href="用户与用户组.html" title="3. 用户与用户组"
-             >next</a> |</li>
+             >下一页</a></li>
         <li class="right" >
           <a href="初识 Linux.html" title="1. 初识 Linux"
-             >previous</a> |</li>
-        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+             >上一页</a> |</li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, openRPi.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+        &copy; 版权所有 2014, openRPi.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 创建。
     </div>
   </body>
 </html>

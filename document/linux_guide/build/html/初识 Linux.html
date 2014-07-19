@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. 初识 Linux &mdash; 简明 Linux 系统指导 1.0.0 documentation</title>
+    <title>1. 初识 Linux &mdash; 简明 Linux 系统指导 1.0.0 文档</title>
     
-    <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="static/nature_overwrite.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,66 +23,24 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="简明 Linux 系统指导 1.0.0 documentation" href="index.html" />
+    <script type="text/javascript" src="static/translations.js"></script>
+    <link rel="top" title="简明 Linux 系统指导 1.0.0 文档" href="index.html" />
     <link rel="next" title="2. 文件与目录" href="文件与目录.html" />
     <link rel="prev" title="Welcome to 简明 Linux 系统指导’s documentation!" href="index.html" /> 
   </head>
   <body>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
           <a href="文件与目录.html" title="2. 文件与目录"
-             accesskey="N">next</a> |</li>
+             accesskey="N">下一页</a></li>
         <li class="right" >
           <a href="index.html" title="Welcome to 简明 Linux 系统指导’s documentation!"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+             accesskey="P">上一页</a> |</li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">1. 初识 Linux</a><ul>
-<li><a class="reference internal" href="#id1">1.1. Linux 历史</a></li>
-<li><a class="reference internal" href="#id2">1.2. Linux 理念与哲学</a></li>
-<li><a class="reference internal" href="#linux-gnu">1.3. Linux 与 GNU</a></li>
-<li><a class="reference internal" href="#id5">1.4. Linux 发行版</a></li>
-<li><a class="reference internal" href="#id6">1.5. 参与Linux内核开发</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to 简明 Linux 系统指导&#8217;s documentation!</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="文件与目录.html"
-                        title="next chapter">2. 文件与目录</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/初识 Linux.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -90,9 +48,9 @@
           <div class="body">
             
   <div class="section" id="linux">
-<h1>1. 初识 Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h1>
+<h1>1. 初识 Linux<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id1">
-<h2>1.1. Linux 历史<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>1.1. Linux 历史<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <p>在介绍 Linux 的历史前，有必要了解，Linux “Li”中“i”的发音类似于“Minix”中“i”的发音，而“nux”中“u”的发音类似于英文单词“profess”中“o”的发音。依照国际音标应该是[&#8216;linэks]。</p>
 <p>1991年4月，芬兰人Linux Benedict Torvalds根据可以在低档机上使用的MINIX设计了一个系统核心Linux_0.01，但没有使用任何MINIX或UNIX的源代码。通过USENET（就是新闻组）宣布这是一个免费的系统，主要在x86电脑上使用，希望大家一起来将它完善，并将源代码放到了芬兰的FTP站点上代人免费下载。本来他想把这个系统称为freax，可是FTP的工作人员认为这是Linus的MINIX，就用Linux这个子目录来存放，于是它就成了“Linux”。这时的Linux只有核心程序，还不能称做是完整的系统，不过由于许多专业用户（主要是程序员）自愿地开发它的应用程序，并借助Internet拿出来让大家一起修改，所以它的周边的程序越来越多，Linux本身也逐渐发展壮大起来。</p>
 <blockquote>
@@ -111,14 +69,14 @@
 <p>就性能上来说，它并不弱于Windows甚至UNIX，而且靠仿真程序还可以运行Windows应用程序。它有成千上万的各类应用软件，并不输于Windows的应用软件数量，其中也有商业公司开发的赢利性的软件。最可贵的是：它是一个真正的UNIX系统，可以供专业用户和想学UNIX的人在自己的个人电脑上使用。Linux是一个非常灵活的系统，相对于Windows而言也是一个比较难用的系统，就如同大多数用户用不惯MacOS的单键鼠标一样。想要对Linux轻车熟路，你必须懂得一些相关知识，软、硬件的配置，最好还懂点程序，因为没有人有义务为您提供技术支援，除了和其它用户交流之外，您必须要自己解决问题。当然，如果只是作为日常应用，Linux一样会为您提供完美的操作环境，你所要做的就是改变使用习惯和成见。</p>
 <p>早期的操作系统是没有图形界面的，自从Apple于1984年推出System 1.0开始，个人电脑才实现了真正的GUI（Graphics User Interface，图形用户界面），从此电脑变得更加具有亲和力，也理加易于使用。Windows的图形化开始于Windows 3.1/3.2，直到Windows 95的出现才标致着多媒体时间的到来，从此计算机变得能说会唱起来。Linux始于UNIX，却青出于蓝胜于蓝，同样拥有着俗的图形用户界面，性能更稳定，也更漂亮，可以和世界上曾经出现过的，最美丽的操作系统媲美！不同于现在的XP，Linux的图形界面是基于Console之上的，类似于Windows 95架于DOS之上，Linux下实现图形界面的是X Windows系统（区别于MS的Windows）。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">注解</p>
 <p class="last">X Windows是一套用于UNIX的具有极大可携性、对彩色掌握的多样性和网络之间的操作透明性的健在式处理窗口系统。它和微软的Windows的工作原理并不相同，不过两者都使用图形界面和窗口技术，从外表看来有那么一点点相似，但又存在着巨大的不同，实际上X Windows的界面更加多样化，也更漂亮，且高效快捷。就Windows对于DOS的地位一样，X Windows一改UNIX/Linux单调的文本介面，提供了一个友善的图形用户界面（GUI）。</p>
 </div>
 <p>Linux的标志和吉祥物是一只名字叫做Tux的企鹅，标志的由来是因为Linus在澳洲时曾被一只动物园里的企鹅咬了一口，便选择了企鹅作为Linux的标志。Linux的注册商标是Linus Torvalds所有的。这是由于在1996年，一个名字叫做William R. Della Croce的律师开始向各个Linux发布商发信，声明他拥有Linux商标的所有权，并且要求各个发布商支付版税，这些发行商集体进行上诉，要求将该注册商标重新分配给 Linus Torvalds。Linus Torvalds 一再声明 Linux 是免费的，他本人可以卖掉，但 Linux 绝不能卖。</p>
 <p>&#8220;谁会牵你的手，走过风风雨雨&#8221;这句歌词曾经代表着千万Linuxer的心，如今，这只可爱的小企鹅终于能独挡一面，在IBM、HP、Novell、Oracle等诸多厂商的支持下，迎着风雪傲然前行。</p>
 </div>
 <div class="section" id="id2">
-<h2>1.2. Linux 理念与哲学<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>1.2. Linux 理念与哲学<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p><strong>Linux 崇尚开源和自由</strong></p>
 <p>商业软件开发与Linux的开发有什么不同？</p>
 <p>商用软件的开发有严格的开发规则、严密的文档、版本控制、严格的测试过程等等，源代码秘而不宣。但是，Linux的开发却完全不同，因为它是基于开放 源代码方式，由网上多个自愿开发者协作开发。</p>
@@ -139,7 +97,7 @@
 <p>Linux的全部内核代码都是从头开始编写的，没有借鉴或使用其它系统的代码。自愿开发者们所做的大量工作是移植 <em>sun系统</em> <a class="footnote-reference" href="#sun" id="id4">[2]</a> 下的自由软件，库文件则有的是从头开始写的，有的则是移植过来的。文件系统是完全新开发的，硬件设备的驱动程序当然也是新编写的。</p>
 <p>虽然，Linux的开发没有一个专门的组织负责，但这并不等于说开发中没有一个完善的管理方式。这种分布式开发并非如有些人想象会变得混乱，它有自己 的组织体系，开发通常以项目为单位，参与者按照自己的个人专长分别负责项目管理、工作分派、工作进度协调、程序编写、测试等。项目管理中使用了专门的项目 管理软件，它帮助项目管理人员定义职责，跟踪相关工作，进行资源优化，提供调度及储备等。工作流程管理系统还可以有效进行文档管理、版本控制等。</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">注解</p>
 <p><strong>有趣的Linux感悟</strong></p>
 <ul class="last simple">
 <li>就像Linux的进程间不会严重的相互干扰一样，我不该让太多的外界因素影响了自己的本意。</li>
@@ -152,7 +110,7 @@
 </ul>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">注解</p>
 <p><strong>KISS 原则 ———— KEEP IT SIMPLE , STUPID!</strong></p>
 <p>编写只做一件事情，并且要做好的程序；编写可以在一起工作的程序，编写处理文本流的程序，因为这是通用的接口。这就是UNIX哲学。所有的哲学真正的浓缩为一个铁一样的定律，高明的工程师的神圣的“KISS 原则”无处不在。</p>
 <p>大部分隐式的UNIX哲学不是这些前辈所说的，而是他们所做的和UNIX自身建立的例子。从整体上看，我们能够抽象出下面这些观点：</p>
@@ -178,12 +136,12 @@
 </div>
 </div>
 <div class="section" id="linux-gnu">
-<h2>1.3. Linux 与 GNU<a class="headerlink" href="#linux-gnu" title="Permalink to this headline">¶</a></h2>
+<h2>1.3. Linux 与 GNU<a class="headerlink" href="#linux-gnu" title="永久链接至标题">¶</a></h2>
 <p>由 Linus Torvalds 及其他人士开发的Linux并不是一个完整的操作系统，而仅仅是一个类Unix内核。事实上，Linux一开始是以完成Minix内核的功能为目标，Linus想做一个“比Minix更好的Minix”。而GNU计划始于1984年，终极目标是完成一套基于自由软件的完整作业操作系统。到1991年Linux的第一个版本公开发行时，GNU计划已经完成除了操作系统内核之外的大部分软件，其中包括了一个壳程序（shell），C语言程序库以及一个C语言编译器。林纳斯·托瓦兹及其他早期Linux开发人员加入了这些工具，而完成了Linux操作系统。但是尽管Linux是在GNU通用公共许可证下发行，它却不是GNU计划的一部分。</p>
 <p>正是由于Linux使用了许多GNU程序，GNU计划以及自由软件基金会（Free Software Foundation）的创立者Richard Stallman认为应该将该操作系统称为“GNU/Linux”比较恰当，这也是为什么我们平时能遇见“GNU/Linux”说法的原因。</p>
 </div>
 <div class="section" id="id5">
-<h2>1.4. Linux 发行版<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>1.4. Linux 发行版<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <p>好了，经由上面的说明，我们知道 Linux 是个“操作系统”，而且他是 GNU 的授权模式，并且有个老大哥是 Unix 。不过，毕竟由 Torvalds 先生负责维护的 Linux 提供的仅是“核心”与“核心工具”的集合，对于需要更完整功能的操作系统来说，毕竟还不够完备，例如如果你要桌面程序，还需要加入 X-Window 系统。如果你要架设 WWW 还需要加入服务器软件。所以，虽然 Linux 的核心已经提供了相当多的支持与工具程序，但毕竟还不足以构成一个很完整的操作系统。</p>
 <p>好在，由于 Linux 的稳定性良好，并且可以在便宜的 x86 架构下的计算机平台运作，所以吸引了很多的套件商与自由软件的开发团队在这个 Linux 的核心上面开发相关的软件，例如有名的 sendmail, wu-ftp, apache 等等。</p>
 <p>此外，亦有一些商业公司发现这个商机，因此，这些商业公司或者是非营利性的工作团队，便将 Linux 核心、核心工具与相关的软件集合起来，并加入自己公司或团队的创意的系统管理模块与工具，而释出一套可以完整安装的操作系统，这个完整的 Linux 操作系统，我们就称呼他为 distribution，或者是中文所谓的『安装套件』。当然，由于是基于 GNU 的架构下，因此各家公司所发行的光盘套件是可以在网络上面自由下载的。</p>
@@ -202,7 +160,7 @@
 <p>就如同 VBird 前面提到的，每一个发行者所使用的 Linux 核心其实是一样的，都是由 www.kernel.org 开发出来的核心。所以其架构，甚至包括其档案放置的目录，都是大同小异的，基本上除了某些内容套件不太一样之外 ( 例如有人使用 wu-ftpd 有人使用 proftpd 等等 ，其它的档案架构与指令系统其实几乎都是相同的，因此我们不去探讨哪一个套件比较出色，而是要来介绍如何学习与使用一个套件。至于下载的地点，网友提供了一个相当棒的多种 Linux distributions 的下载网站：&lt;<a class="reference external" href="http://www.Linuxiso.org">http://www.Linuxiso.org</a>&gt;</p>
 </div>
 <div class="section" id="id6">
-<h2>1.5. 参与Linux内核开发<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>1.5. 参与Linux内核开发<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <p>如果你对Linux内核开发一无所知，你应该访问“Linux内核新手”计划：<a class="reference external" href="http://kernelnewbies.org">http://kernelnewbies.org</a>。它拥有一个可以问各种最基本的内核开发问题的邮件列表（在提问之前一定要记得查找已往的邮件，确认是否有人已经回答过相同的问题）。它还拥有一个可以获得实时反馈的IRC聊天频道，以及大量对于学习Linux内核开发相当有帮助的文档。</p>
 <p>网站简要介绍了源代码组织结构、子系统划分以及目前正在进行的项目（包括内核中的和单独维护的）。它还提供了一些基本的帮助信息，比如如何编译内核和打补丁。</p>
 <p>如果你想加入内核开发社区并协助完成一些任务，却找不到从哪里开始，可以访问“Linux内核房管员”计划：<a class="reference external" href="http://kernelnewbies.org/KernelJanitors">http://kernelnewbies.org/KernelJanitors</a>。这是极佳的起点。它提供一个相对简单的任务列表，列出内核代码中需要被重新整理或者改正的地方。通过和负责这个计划的开发者们一同工作，你会学到将补丁集成进内核的基本原理。如果还没有决定下一步要做什么的话，你还可能会得到方向性的指点。</p>
@@ -227,26 +185,55 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">內容目录</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">1. 初识 Linux</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1.1. Linux 历史</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.2. Linux 理念与哲学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-gnu">1.3. Linux 与 GNU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.4. Linux 发行版</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1.5. 参与Linux内核开发</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="文件与目录.html">2. 文件与目录</a></li>
+<li class="toctree-l1"><a class="reference internal" href="用户与用户组.html">3. 用户与用户组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="内核与应用程序.html">4. 内核与应用程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell 与 shell 脚本.html">5. shell 与 shell 脚本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-Linux远程登录.html">6. 附录-Linux远程登录</a></li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="index.html"
+                        title="上一章">Welcome to 简明 Linux 系统指导&#8217;s documentation!</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="文件与目录.html"
+                        title="下一章">2. 文件与目录</a></p>
+  <h3>本页</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/初识 Linux.txt"
+           rel="nofollow">显示源代码</a></li>
+  </ul>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
           <a href="文件与目录.html" title="2. 文件与目录"
-             >next</a> |</li>
+             >下一页</a></li>
         <li class="right" >
           <a href="index.html" title="Welcome to 简明 Linux 系统指导’s documentation!"
-             >previous</a> |</li>
-        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+             >上一页</a> |</li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, openRPi.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+        &copy; 版权所有 2014, openRPi.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 创建。
     </div>
   </body>
 </html>

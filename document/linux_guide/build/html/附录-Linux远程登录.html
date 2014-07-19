@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6. 附录-Linux远程登录 &mdash; 简明 Linux 系统指导 1.0.0 documentation</title>
+    <title>6. 附录-Linux远程登录 &mdash; 简明 Linux 系统指导 1.0.0 文档</title>
     
-    <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="static/nature_overwrite.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,56 +23,20 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="简明 Linux 系统指导 1.0.0 documentation" href="index.html" />
+    <script type="text/javascript" src="static/translations.js"></script>
+    <link rel="top" title="简明 Linux 系统指导 1.0.0 文档" href="index.html" />
     <link rel="prev" title="5. shell 与 shell 脚本" href="shell 与 shell 脚本.html" /> 
   </head>
   <body>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
           <a href="shell 与 shell 脚本.html" title="5. shell 与 shell 脚本"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+             accesskey="P">上一页</a></li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">6. 附录-Linux远程登录</a><ul>
-<li><a class="reference internal" href="#puttylinux">6.1. 使用Putty登录Linux</a></li>
-<li><a class="reference internal" href="#sshlinux">6.2. 使用ssh命令登录Linux</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="shell 与 shell 脚本.html"
-                        title="previous chapter">5. shell 与 shell 脚本</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/附录-Linux远程登录.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -80,11 +44,11 @@
           <div class="body">
             
   <div class="section" id="linux">
-<h1>6. 附录-Linux远程登录<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h1>
+<h1>6. 附录-Linux远程登录<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h1>
 <p>Linux大多应用于服务器，而服务器不可能像PC一样放在办公室，它们是放在IDC机房的，所以平时登录linux系统都是通过远程登录的。Linux系统中是通过ssh服务实现的远程登录功能。默认ssh服务开启了22端口，而且当我们安装完系统时，这个服务已经安装，并且是开机启动的。所以不需要我们额外配置什么就能直接远程登录linux系统。ssh服务的配置文件为 /etc/ssh/sshd_config，你可以修改这个配置文件来实现你想要的ssh服务。比如你可以更改启动端口为36000.</p>
 <p>如果你是windows的操作系统，则Linux远程登录需要在我们的机器上额外安装一个终端软件。目前比较常见的终端登录软件有SecureCRT, Putty, SSH SecureShell等，很多朋友喜欢用SecureCRT因为它的功能是很强大的，而笔者喜欢用Putty，只是因为它的小巧以及非常漂亮的颜色显示。不管你使用哪一个客户端软件，最终的目的只有一个，就是远程登录到linux服务器上。这些软件网上有很多免费版的。下面笔者介绍如何使用Putty登录远程linux服务器。</p>
 <div class="section" id="puttylinux">
-<h2>6.1. 使用Putty登录Linux<a class="headerlink" href="#puttylinux" title="Permalink to this headline">¶</a></h2>
+<h2>6.1. 使用Putty登录Linux<a class="headerlink" href="#puttylinux" title="永久链接至标题">¶</a></h2>
 <p>如果你下载了putty，请直接运行putty.exe</p>
 <img alt="http://www.92csz.com/study/linux/images/5_1.png" src="http://www.92csz.com/study/linux/images/5_1.png" />
 <p>因为是远程登录，所以你要登录的服务器一定会有一个IP或者主机名。请在Host Name( or IP address) 下面的框中输入你要登录的远程服务器IP，然后回车。</p>
@@ -94,7 +58,7 @@
 <p>输入root 然后回车，再输入密码，就能登录到远程的linux系统了。</p>
 </div>
 <div class="section" id="sshlinux">
-<h2>6.2. 使用ssh命令登录Linux<a class="headerlink" href="#sshlinux" title="Permalink to this headline">¶</a></h2>
+<h2>6.2. 使用ssh命令登录Linux<a class="headerlink" href="#sshlinux" title="永久链接至标题">¶</a></h2>
 <p>?</p>
 </div>
 </div>
@@ -103,23 +67,46 @@
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">內容目录</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="初识 Linux.html">1. 初识 Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="文件与目录.html">2. 文件与目录</a></li>
+<li class="toctree-l1"><a class="reference internal" href="用户与用户组.html">3. 用户与用户组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="内核与应用程序.html">4. 内核与应用程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shell 与 shell 脚本.html">5. shell 与 shell 脚本</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">6. 附录-Linux远程登录</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#puttylinux">6.1. 使用Putty登录Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sshlinux">6.2. 使用ssh命令登录Linux</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="shell 与 shell 脚本.html"
+                        title="上一章">5. shell 与 shell 脚本</a></p>
+  <h3>本页</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/附录-Linux远程登录.txt"
+           rel="nofollow">显示源代码</a></li>
+  </ul>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
           <a href="shell 与 shell 脚本.html" title="5. shell 与 shell 脚本"
-             >previous</a> |</li>
-        <li><a href="index.html">简明 Linux 系统指导 1.0.0 documentation</a> &raquo;</li> 
+             >上一页</a></li>
+        <li><a href="index.html">简明 Linux 系统指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, openRPi.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+        &copy; 版权所有 2014, openRPi.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 创建。
     </div>
   </body>
 </html>
