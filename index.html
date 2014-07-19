@@ -1,44 +1,68 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset='utf-8' />
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-<meta name="description" content="openRPi website : " />
-<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-<title>openRPi社区</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>openRPi</title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.css" />
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap-theme.css" />
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="onepage-scroll-master/onepage-scroll.css" />
+<script src="onepage-scroll-master/jquery.onepage-scroll.min.js"></script>
+<!--<link rel="stylesheet" href="Flat-UI-master/css/flat-ui.css">
+-->
+<script>
+$(document).ready(function(){
+	$(".page-scroll").onepage_scroll({
+		sectionContainer: "section",
+		responsiveFallback: 600,
+		loop: true
+	});
+});
+</script>
 </head>
 <body>
-<!-- HEADER -->
-<div id="header_wrap" class="outer">
-	<header class="inner"> <a id="forkme_banner" href="https://github.com/openRPi">View on GitHub</a>
-		<h1 id="project_title">openRPi 社区</h1>
-		<h2 id="project_tagline">致力于嵌入式入门与兴趣培养计划</h2>
-		<!--<section id="downloads">
-              <a class="zip_download_link" href="https://github.com/openRPi/website/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/openRPi/website/tarball/master">Download this project as a tar.gz file</a>
-            </section>-->
-	</header>
-</div>
-<!-- MAIN CONTENT -->
-<div id="main_content_wrap" class="outer">
-	<section id="main_content" class="inner">
-		<h3>又不是去投胎...</h3>
-		<h3>稍等几个月，ok？</h3>
-		<h3>&nbsp;</h3>
-		<p>去悄悄看一下 ╮(╯▽╰)╭</p>
-		<ul>
-			<li><a href="document/linux_guide/build/html/index.html" target="_blank">简明Linux系统指导</a></li>
-			<li><a href="document/linux_gpio_guide/build/html/index.html" target="_blank">简明Linux GPIO驱动指导</a></li>
-		</ul>
-		<h3>&nbsp;</h3>
-		<h3><em>We are in SCUT</em></h3>
-	</section>
-</div>
-<!-- FOOTER  -->
-<div id="footer_wrap" class="outer">
-	<footer class="inner">
-		<p class="copyright">openRPi website maintained by <a href="https://github.com/openRPi">openRPi</a></p>
-		<p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-	</footer>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2"> </div>
+		<!--8/12 body-->
+		<div class="col-md-8">
+			<!--Menu-->
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<!-- openRPi logo -->
+					<div class="navbar-header"> <a class="navbar-brand" href="#">openRPi</a> </div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="#">发现</a></li>
+							<li><a href="#">资源</a></li>
+							<li><a href="#">开发</a></li>
+							<li><a href="#">团队</a></li>
+							<li><a href="#">博客</a></li>
+							<li><a href="#"> </a></li>
+							<li>
+								<button type="button" class="btn btn-primary navbar-btn">购买</button>
+							</li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+			<!--End menu-->
+			<!-- Scroll -->
+			<div class="row">
+				<div class="col-md-12 page-scroll">
+					<section> <img src="images/开源且专注.png" alt="开源且专注" class="img-responsive "/> </section>
+					<section> <img src="images/开源且专注.png" alt="开源且专注" class="img-responsive"/> </section>
+				</div>
+			</div>
+			<!--End scroll-->
+		</div>
+		<!--End 8/12 body-->
+		<div class="col-md-2"> </div>
+	</div>
 </div>
 </body>
+</html>
