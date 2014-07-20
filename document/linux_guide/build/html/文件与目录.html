@@ -8,8 +8,8 @@
     
     <title>2. 文件与目录 &mdash; 简明 Linux 系统指导 1.0.0 文档</title>
     
-    <link rel="stylesheet" href="static/nature_overwrite.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/nature_overwrite.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +20,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/underscore.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="static/translations.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="简明 Linux 系统指导 1.0.0 文档" href="index.html" />
     <link rel="next" title="3. 用户与用户组" href="用户与用户组.html" />
     <link rel="prev" title="1. 初识 Linux" href="初识 Linux.html" /> 
@@ -50,51 +50,73 @@
   <div class="section" id="id1">
 <h1>2. 文件与目录<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="linux">
-<h2>2.1. linux的文件系统<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h2>
-<p>windows的系统格式化硬盘时会指定格式，fat或者ntfs。而linux的文件系统格式为Ext2，或者Ext3。早期的linux使用Ext2格式，目前的linux都使用了Ext3。</p>
-<p>Ext2文件系统虽然是高效稳定的。但是，随着Linux系统在关键业务中的应用，Linux文件系统的弱点也渐渐显露出来了，因为Ext2文件系统是非日志文件系统。这在关键行业的应用是一个致命的弱点。Ext3文件系统是直接从Ext2文件系统发展而来，Ext3文件系统带有日志功能，可以跟踪记录文件系统的变化，并将变化内容写入日志，写操作首先是对日志记录文件进行操作，若整个写操作由于某种原因(如系统掉电)而中断，系统重启时，会根据日志记录来恢复中断前的写操作，而且这个过程费时极短。目前Ext3文件系统已经非常稳定可靠。它完全兼容Ext2文件系统。用户可以平滑地过渡到一个日志功能健全的文件系统中来。这实际上了也是ext3日志文件系统初始设计的初衷。</p>
-<p>Linux文件系统在windows中是不能识别的，但是在linux系统中你可以挂载的windows的文件系统。linux目前支持MS-DOS，VFAT，FAT，BSD,NTFS等格式。</p>
-<p>Ext3文件系统为大多数Linux发行版默认使用的文件系统。除了Ext3文件系统外，有些linux发行版例如SuSE默认的文件系统为reiserFS。Ext3独特的优点就是易于转换，很容易在 Ext2 和 Ext3 之间相互转换，而具有良好的兼容性。而其它优点 ReiserFS 都有，而且还比 Ext3 做得更好。如高效的磁盘空间利用和独特的搜寻方式都是 Ext3 所不具备的，速度上 Ext3 也不能和 ReiserFS 相媲美，在实际使用过程中，reiserFS 也更加安全高效。</p>
+<h2>2.1. Linux的文件系统<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h2>
+<p>众所周知，我们刚买回来的硬盘，一般是完全空白的，里面不存在任何文件。这种状态下的新硬盘，必须经过格式化成某种文件系统才能使用。所谓文件系统，就是指磁盘里面文件的组织存放格式。依据这套格式，计算机读取硬盘的时候，就能分辨出哪里是文件的开头，哪里又是文件的结尾。通常文件系统的实现都是非常复杂的，涉及许多文件存取策略和地址转换表。这部分内容不在我们的讨论范围内，有兴趣的读者可自行查阅相关资料。</p>
+<p>用过Windows磁盘格式化工具的读者，一定很熟悉下面的这个界面：</p>
+<img alt="http://c.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=25dd9a908226cffc7d27b7e0d86821f5/64380cd7912397dd33dc740d5982b2b7d0a28716.jpg" src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=25dd9a908226cffc7d27b7e0d86821f5/64380cd7912397dd33dc740d5982b2b7d0a28716.jpg" />
+<p>“文件系统”下拉框里列出了NTFS、FAT32和exFAT三种文件格式。这些文件系统格式在Windows下非常常见，NTFS如今已成为Windows的默认文件系统格式。</p>
+<p>Linux与Windows不同的地方在于，Linux虽然支持Windows下的各个文件系统，但Linux一定是依赖一种称为Ext的文件系统格式。如同Win7的系统盘（C盘）一定要NTFS格式一样，Linux的 <em>系统盘</em> （这个说法其实并不正确，但我们这里先这样称呼）也必须是Ext格式。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">这个情况正在改观。Ext3文件系统为大多数Linux发行版默认使用的文件系统。除了Ext3文件系统外，有些Linux发行版例如SuSE默认的文件系统为reiserFS。</p>
 </div>
-<div class="section" id="id2">
-<h2>2.2. 绝对路径和相对路径<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<p>在linux的世界中，存在着绝对路径和相对路径。</p>
-<dl class="docutils">
-<dt>绝对路径：</dt>
-<dd>路径的写法一定由根目录 “/” 写起，例如 <tt class="docutils literal"><span class="pre">/usr/local/mysql</span></tt> 这就是绝对路径。</dd>
-<dt>相对路径：</dt>
-<dd><p class="first">路径的写法不是由根目录 “/” 写起，例如，首先用户进入到 <tt class="docutils literal"><span class="pre">/</span></tt> 然后再进入到 <tt class="docutils literal"><span class="pre">home</span></tt>，命令为</p>
-<div class="last highlight-python"><div class="highlight"><pre>$ cd /home
-$ cd test
-</pre></div>
+<p>早期的Linux使用Ext2格式，目前的Linux都使用了Ext3或Ext4。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>Ext2存取文件的性能极好，对于中小型的文件优势更为明显。但是，随着早期Linux系统在关键业务中的应用，Ext2文件系统的弱点也渐渐显露出来了。因为Ext2文件系统是非日志文件系统，当计算机遇到突发事件宕机或突然断电的情况时，磁盘数据极其容易损坏。这在关键行业的应用是一个致命的弱点。</p>
+<p class="last">Ext3文件系统是直接从Ext2文件系统发展而来，Ext3文件系统带有日志功能，可以跟踪记录文件系统的变化，并将变化内容写入日志。写操作首先是对日志记录文件进行操作，若整个写操作由于某种原因(如系统掉电)而中断，系统重启时，会根据日志记录来恢复中断前的写操作，而且这个过程费时极短。目前Ext3文件系统已经非常稳定可靠。它完全兼容Ext2文件系统。用户可以平滑地过渡到一个日志功能健全的文件系统中来。这实际上了也是ext3日志文件系统初始设计的初衷。</p>
 </div>
-</dd>
-</dl>
-<p>此时用户所在的路径为 <tt class="docutils literal"><span class="pre">/home/test</span></tt> 。第一个 <tt class="docutils literal"><span class="pre">cd</span></tt> 命令后跟 <tt class="docutils literal"><span class="pre">/home</span></tt> 第二个 <tt class="docutils literal"><span class="pre">cd</span></tt> 命令后跟 <tt class="docutils literal"><span class="pre">test</span></tt> ，并没有斜杠，这个 <tt class="docutils literal"><span class="pre">test</span></tt> 是相对于 <tt class="docutils literal"><span class="pre">/home</span></tt> 目录来讲的，所以叫做相对路径。</p>
+<p>Linux文件系统在windows中是不能识别的。若读者企图用Windows的磁盘管理工具查看Linux磁盘内容，它也只能被识别为“未格式化的区域”。但是在Linux系统中，通过一种叫做“挂载”操作，你可以存取几乎所有的Windows文件系统隔世，如MS-DOS，VFAT，FAT，BSD,NTFS等。</p>
+<hr class="docutils" />
+<p>我们在使用Windows系统的时候，除了系统盘C盘，还会习惯性地把剩下的磁盘空间分为D盘、E盘、F盘等等。每个磁盘分区，Windows处理起来像若干棵倒挂的树：</p>
+<img alt="_images/Windows文件系统.jpg" src="_images/Windows文件系统.jpg" />
+<p>对于Linux而言，它更像是只有一个C盘的Windows————所有的文件都被组织在 <strong>根目录</strong> （用正斜杠 <tt class="docutils literal"><span class="pre">/</span></tt> 表示）下。</p>
+<img alt="_images/Linux文件系统.jpg" src="_images/Linux文件系统.jpg" />
+<p>由于历史原因，根目录下每个文件夹都有它约定俗成的用途。这里把它们列举如下，但不做详细分析，因为每个目录的具体内容会在以后的章节中慢慢讲解。</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">/bin</span></tt> 二进制可执行命令</li>
+<li><tt class="docutils literal"><span class="pre">/dev</span></tt> 设备特殊文件</li>
+<li><tt class="docutils literal"><span class="pre">/etc</span></tt> 系统管理和配置文件</li>
+<li><tt class="docutils literal"><span class="pre">/etc/rc.d</span></tt> 启动的配置文件和脚本</li>
+<li><tt class="docutils literal"><span class="pre">/home</span></tt> 用户主目录的基点，比如用户user的主目录就是 <tt class="docutils literal"><span class="pre">/home/user</span></tt> ，可以用 <tt class="docutils literal"><span class="pre">~user</span></tt> 表示</li>
+<li><tt class="docutils literal"><span class="pre">/lib</span></tt> 标准程序设计库，又叫动态链接共享库，作用类似windows里的.dll文件</li>
+<li><tt class="docutils literal"><span class="pre">/sbin</span></tt> 系统管理命令，这里存放的是系统管理员使用的管理程序</li>
+<li><tt class="docutils literal"><span class="pre">/tmp</span></tt> 公用的临时文件存储点</li>
+<li><tt class="docutils literal"><span class="pre">/root</span></tt> 系统管理员的主目录（呵呵，特权阶级）</li>
+<li><tt class="docutils literal"><span class="pre">/mnt</span></tt> 系统提供这个目录是让用户临时挂载其他的文件系统。</li>
+<li><tt class="docutils literal"><span class="pre">/lost+found</span></tt> 这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫 <a href="#id2"><span class="problematic" id="id3">**</span></a><a href="#id4"><span class="problematic" id="id5">*</span></a>.chk）就在这里</li>
+<li><tt class="docutils literal"><span class="pre">/proc</span></tt> 虚拟的目录，是系统内存的映射。可直接访问这个目录来获取系统信息。</li>
+<li><tt class="docutils literal"><span class="pre">/var</span></tt> 某些大文件的溢出区，比方说各种服务的日志文件</li>
+<li><tt class="docutils literal"><span class="pre">/usr</span></tt> 最庞大的目录，要用到的应用程序和文件几乎都在这个目录。其中包含：</li>
+<li><tt class="docutils literal"><span class="pre">/usr/bin</span></tt> 众多的应用程序</li>
+<li><tt class="docutils literal"><span class="pre">/usr/sbin</span></tt> 超级用户的一些管理程序</li>
+<li><tt class="docutils literal"><span class="pre">/usr/doc</span></tt> Linux文档</li>
+<li><tt class="docutils literal"><span class="pre">/usr/include</span></tt> Linux下开发和编译应用程序所需要的头文件</li>
+<li><tt class="docutils literal"><span class="pre">/usr/lib</span></tt> 常用的动态链接库和软件包的配置文件</li>
+<li><tt class="docutils literal"><span class="pre">/usr/man</span></tt> 帮助文档</li>
+<li><tt class="docutils literal"><span class="pre">/usr/src</span></tt> 源代码，Linux内核的源代码就放在/usr/src/Linux里</li>
+<li><tt class="docutils literal"><span class="pre">/usr/local/bin</span></tt> 本地增加的命令</li>
+<li><tt class="docutils literal"><span class="pre">/usr/local/lib</span></tt> 本地增加的库</li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">/bin</span></tt> 、 <tt class="docutils literal"><span class="pre">/sbin</span></tt> 、 <tt class="docutils literal"><span class="pre">/usr/bin</span></tt> 、 <tt class="docutils literal"><span class="pre">/usr/local/bin</span></tt> 这些目录相当于Windows的 <tt class="docutils literal"><span class="pre">C:\Program</span> <span class="pre">Files</span></tt> ，存放各种各样的可执行文件。而 <tt class="docutils literal"><span class="pre">/home/user</span></tt> 这样的用户主目录，则类似于Windows的 <tt class="docutils literal"><span class="pre">C:\Users\user</span></tt> 用于存放用户相关的数据。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">并不是每个Linux系统根目录都与上面举例的一模一样，有些Linux发行版会根据自身特点自行增删一些目录。</p>
 </div>
-<div class="section" id="id3">
-<h2>2.3. 文件的所属主以及所属组<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>一个linux目录或者文件，都会有一个所属用户和所属组。</p>
-<dl class="docutils">
-<dt>所属用户：</dt>
-<dd>文件的拥有者</dd>
-<dt>所属组：</dt>
-<dd>该文件所属主所在的一个组。</dd>
-</dl>
-<p>Linux这样设置文件属性的目的是为了文件的安全。例如，test0文件的所属用户是user0，而test1文件的所属用户是user1，那么user1是不能查看test0文件的，相应的user0也不能查看test1文件。然后有这样一个应用，我们想创建一个文件同时让user0和user1来查看怎么办呢？</p>
-<p>这时“所属组”就派上用场了。即，创建一个群组users，让user0和user1同属于users组，然后建立一个文件test2，且其所属组为users，那么user0和user1都可以访问test2文件。</p>
-<p>Linux文件属性不仅规定了所属用户和所属组，还规定了所属用户（user）、所属组（group）以及其他用户（others）对该文件的权限。</p>
 </div>
-<div class="section" id="id4">
-<h2>2.4. linux文件类型<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
-<p>若读者有Dos和Windows经验，就大概知道系统存在若干类型的文件，如系统文件、只读文件、隐含文件等。在Linux/Unix下，文件类型远比Dos/Windows系统多样和复杂。</p>
-<p>Linux文件类型和Linux文件的文件名所代表的意义是两个不同的概念。Linux系统主要根据文件头信息来判断文件类型，扩展名并非决定因素。</p>
+<div class="section" id="id6">
+<h2>2.2. Linux文件类型<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>在Windows下，我们经常能遇到若干类型的文件，如系统文件、只读文件、隐含文件等。Windows依靠文件的后缀名判断文件类型，如xxx.txt代表文本文件，xxx.exe代表可执行文件，xxx.jpg代表图片等。但在Linux下，后缀名的作用被忽略了，Linux不再依靠后缀名判断文件类型，而是依赖 <em>文件头信息</em>。可以理解为，无论是Windows还是Linux，真正的文件类型都被保存在文件头信息里面，后缀名只是文件名的一部分，不代表真正的文件类型。Linux采用了“最标准的方式”判断文件类型，因此，当读者在Linux下遇到一个可执行的 xxx.jpg文件时，就能理解了——Linux不在乎后缀名。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Linux并非对所有的后缀名都忽视，这主要取决于应用程序。有些Linux下的应用程序也是依靠后缀名判断文件类型的。</p>
+</div>
 <p>Linux文件类型常见的有：普通文件、目录、字符设备文件、块设备文件、符号链接文件等。</p>
 <dl class="docutils">
 <dt>普通文件</dt>
-<dd>普通文件</dd>
+<dd>这没什么好解释的，就是普通文件，例如xxx.txt、xxx.jpg、xxx.pdf等。</dd>
 <dt>目录</dt>
-<dd>跟windows下的文件夹一个意思，只不过在linux中叫做目录。</dd>
+<dd>跟windows下的文件夹一个意思，只不过在Linux中叫做目录。</dd>
 <dt>字符设备</dt>
 <dd>串行端口的接口设备，例如键盘、鼠标等等。</dd>
 <dt>块设备文件</dt>
@@ -106,6 +128,7 @@ $ cd test
 <dd>类似Windows的快捷方式。</dd>
 </dl>
 <p>命名管道文件</p>
+<hr class="docutils" />
 </div>
 </div>
 
@@ -119,10 +142,8 @@ $ cd test
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="初识 Linux.html">1. 初识 Linux</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">2. 文件与目录</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#linux">2.1. linux的文件系统</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">2.2. 绝对路径和相对路径</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">2.3. 文件的所属主以及所属组</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">2.4. linux文件类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux">2.1. Linux的文件系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">2.2. Linux文件类型</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="用户与用户组.html">3. 用户与用户组</a></li>
@@ -139,7 +160,7 @@ $ cd test
                         title="下一章">3. 用户与用户组</a></p>
   <h3>本页</h3>
   <ul class="this-page-menu">
-    <li><a href="sources/文件与目录.txt"
+    <li><a href="_sources/文件与目录.txt"
            rel="nofollow">显示源代码</a></li>
   </ul>
         </div>
