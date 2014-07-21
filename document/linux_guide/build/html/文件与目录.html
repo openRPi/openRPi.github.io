@@ -68,9 +68,9 @@
 </div>
 <p>Linux文件系统在windows中是不能识别的。若读者企图用Windows的磁盘管理工具查看Linux磁盘内容，它也只能被识别为“未格式化的区域”。但是在Linux系统中，通过一种叫做“挂载”操作，你可以存取几乎所有的Windows文件系统隔世，如MS-DOS，VFAT，FAT，BSD,NTFS等。</p>
 <hr class="docutils" />
-<p>我们在使用Windows系统的时候，除了系统盘C盘，还会习惯性地把剩下的磁盘空间分为D盘、E盘、F盘等等。每个磁盘分区，Windows处理起来像若干棵倒挂的树。有几个分区就有几个树型结构，他们之间的关系是并列的。</p>
+<p>我们在使用Windows系统的时候，除了系统盘C盘，还会习惯性地把剩下的磁盘空间分为D盘、E盘、F盘等等。每个磁盘分区，Windows处理起来像若干棵倒挂的树：</p>
 <img alt="_images/Windows文件系统.jpg" src="_images/Windows文件系统.jpg" />
-<p>对于Linux而言，它更像是只有一个C盘的Windows————所有的文件都被组织在 <strong>根目录</strong> （用正斜杠 <tt class="docutils literal"><span class="pre">/</span></tt> 表示）下。无论Linux管理几个磁盘分区，这样的目录树只有一个。</p>
+<p>对于Linux而言，它更像是只有一个C盘的Windows————所有的文件都被组织在 <strong>根目录</strong> （用正斜杠 <tt class="docutils literal"><span class="pre">/</span></tt> 表示）下。</p>
 <img alt="_images/Linux文件系统.jpg" src="_images/Linux文件系统.jpg" />
 <p>由于历史原因，根目录下每个文件夹都有它约定俗成的用途。这里把它们列举如下，但不做详细分析，因为每个目录的具体内容会在以后的章节中慢慢讲解。</p>
 <ul class="simple">
@@ -98,7 +98,6 @@
 <li><tt class="docutils literal"><span class="pre">/usr/local/bin</span></tt> 本地增加的命令</li>
 <li><tt class="docutils literal"><span class="pre">/usr/local/lib</span></tt> 本地增加的库</li>
 </ul>
-<p>这里要注意，Linux下路径分隔符为正斜杠 <tt class="docutils literal"><span class="pre">/</span></tt>，而Windows的为反斜杠 <tt class="docutils literal"><span class="pre">\</span></tt>。</p>
 <p><tt class="docutils literal"><span class="pre">/bin</span></tt> 、 <tt class="docutils literal"><span class="pre">/sbin</span></tt> 、 <tt class="docutils literal"><span class="pre">/usr/bin</span></tt> 、 <tt class="docutils literal"><span class="pre">/usr/local/bin</span></tt> 这些目录相当于Windows的 <tt class="docutils literal"><span class="pre">C:\Program</span> <span class="pre">Files</span></tt> ，存放各种各样的可执行文件。而 <tt class="docutils literal"><span class="pre">/home/user</span></tt> 这样的用户主目录，则类似于Windows的 <tt class="docutils literal"><span class="pre">C:\Users\user</span></tt> 用于存放用户相关的数据。</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
@@ -113,31 +112,6 @@
 <p class="last">Linux并非对所有的后缀名都忽视，这主要取决于应用程序。有些Linux下的应用程序也是依靠后缀名判断文件类型的。</p>
 </div>
 <p>Linux文件类型常见的有：普通文件、目录、字符设备文件、块设备文件、符号链接文件等。</p>
-<div class="admonition note">
-<p class="first admonition-title">注解</p>
-<p><em>Linux的世界里，一切皆是文件</em></p>
-<p class="last">如果从事Linux编程的话，就能很好理解这句话，对所有文件（目录、字符设备、块设备、 套接字、打印机等）操作，读写都可用 <tt class="docutils literal"><span class="pre">open()</span></tt> 、 <tt class="docutils literal"><span class="pre">close()</span></tt> 、 <tt class="docutils literal"><span class="pre">write()</span></tt> 、 <tt class="docutils literal"><span class="pre">read()</span></tt> 等函数进行处理。屏蔽了硬件的区别，所有设备都抽象成文件，提供统一的接口给用户。这就是“一切皆是文件”的思想。</p>
-</div>
-<p>我们在这里先给读者介绍一个Linux的命令—— <tt class="docutils literal"><span class="pre">ls</span> <span class="pre">-lh</span></tt>。这条指令的意思是列出当前目录下可见文件的属性。关于Linux命令的用法，这里不作具体解释，仅仅演示而已。</p>
-<p>我们在某个目录下，执行 <tt class="docutils literal"><span class="pre">ls</span> <span class="pre">-al</span></tt>，观察输出：</p>
-<div class="highlight-shell"><div class="highlight"><pre>$ ls -lh
-总计 14M
--rw-r--r-- 1 root root     2 03-27 02:00 fonts.scale
--rw-r--r-- 1 root root   53K 03-16 08:54 install.log
--rw-r--r-- 1 root root   14M 03-16 07:53 kernel-6.15-1.2025_FC5.i686.rpm
-drwxr-xr-x 2 1000 users 4.0K 04-04 23:30 mkuml-2004.07.17
-drwxr-xr-x 2 root root  4.0K 04-19 10:53 mydir
-drwxr-xr-x 2 root root  4.0K 03-17 04:25 Public
-</pre></div>
-</div>
-<p>每行输出结果的第一个字母，表示了文件类型。比如以上， <tt class="docutils literal"><span class="pre">-</span></tt> 表示普通文件， <tt class="docutils literal"><span class="pre">d</span></tt> 表示目录。类似的还有:</p>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">l</span></tt> ：符号链接文件</li>
-<li><tt class="docutils literal"><span class="pre">c</span></tt> ：字符设备</li>
-<li><tt class="docutils literal"><span class="pre">b</span></tt> ；块设备</li>
-<li><tt class="docutils literal"><span class="pre">s</span></tt> ：套接口文件</li>
-<li><tt class="docutils literal"><span class="pre">p</span></tt> ：命名管道文件</li>
-</ul>
 <dl class="docutils">
 <dt>普通文件</dt>
 <dd>这没什么好解释的，就是普通文件，例如xxx.txt、xxx.jpg、xxx.pdf等。</dd>
@@ -146,20 +120,14 @@ drwxr-xr-x 2 root root  4.0K 03-17 04:25 Public
 <dt>字符设备</dt>
 <dd>串行端口的接口设备，例如键盘、鼠标等等。</dd>
 <dt>块设备文件</dt>
-<dd>通常用在网络数据连接，最常在 <tt class="docutils literal"><span class="pre">/var/run</span></tt> 目录中看到这种文件类型。</dd>
-<dt>套接口文件</dt>
-<dd>用于网络通信</dd>
+<dd>通常用在网络数据连接，最常在 /var/run目录中看到这种文件类型。</dd>
+</dl>
+<p>套接口文件</p>
+<dl class="docutils">
 <dt>符号链接文件</dt>
 <dd>类似Windows的快捷方式。</dd>
-<dt>命名管道文件</dt>
-<dd>顾名思义，这种文件就像一条管道，中间可以传输信息。它总是成对出现，类似管道的两头，用于进程间通信。</dd>
 </dl>
-<p>这里和Windows不太一样，Linux甚至把各个硬件也抽象成文件了，因为 <strong>Linux的世界里，一切皆是文件</strong>。读者有C语言经验的话就很好理解——对所有文件（目录、字符设备、块设备、 套接字、打印机等）操作，读写都可用 <tt class="docutils literal"><span class="pre">open()</span></tt> 、 <tt class="docutils literal"><span class="pre">close()</span></tt> 、 <tt class="docutils literal"><span class="pre">write()</span></tt> 、 <tt class="docutils literal"><span class="pre">read()</span></tt> 等函数进行处理。屏蔽了硬件的区别，所有设备都抽象成文件，提供统一的接口给用户。这就是“一切皆是文件”的思想。</p>
-<div class="admonition note">
-<p class="first admonition-title">注解</p>
-<p><em>为什么“目录”也是一种文件？</em></p>
-<p class="last">这部分内容此处不详细讨论，可以理解为“目录”是存放着其他文件位置的一个文件表，而这个文件表自身也是一个文件。</p>
-</div>
+<p>命名管道文件</p>
 <hr class="docutils" />
 </div>
 </div>
