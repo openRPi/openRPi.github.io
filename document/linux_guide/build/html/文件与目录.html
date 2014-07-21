@@ -53,7 +53,7 @@
 <h2>2.1. Linux的文件系统<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h2>
 <p>众所周知，我们刚买回来的硬盘，一般是完全空白的，里面不存在任何文件。这种状态下的新硬盘，必须经过格式化成某种文件系统才能使用。所谓文件系统，就是指磁盘里面文件的组织存放格式。依据这套格式，计算机读取硬盘的时候，就能分辨出哪里是文件的开头，哪里又是文件的结尾。通常文件系统的实现都是非常复杂的，涉及许多文件存取策略和地址转换表。这部分内容不在我们的讨论范围内，有兴趣的读者可自行查阅相关资料。</p>
 <p>用过Windows磁盘格式化工具的读者，一定很熟悉下面的这个界面：</p>
-<img alt="http://c.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=25dd9a908226cffc7d27b7e0d86821f5/64380cd7912397dd33dc740d5982b2b7d0a28716.jpg" src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=25dd9a908226cffc7d27b7e0d86821f5/64380cd7912397dd33dc740d5982b2b7d0a28716.jpg" />
+<img alt="images/Windows磁盘格式化工具.jpg" src="images/Windows磁盘格式化工具.jpg" />
 <p>“文件系统”下拉框里列出了NTFS、FAT32和exFAT三种文件格式。这些文件系统格式在Windows下非常常见，NTFS如今已成为Windows的默认文件系统格式。</p>
 <p>Linux与Windows不同的地方在于，Linux虽然支持Windows下的各个文件系统，但Linux一定是依赖一种称为Ext的文件系统格式。如同Win7的系统盘（C盘）一定要NTFS格式一样，Linux的 <em>系统盘</em> （这个说法其实并不正确，但我们这里先这样称呼）也必须是Ext格式。</p>
 <div class="admonition warning">

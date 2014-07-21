@@ -8,7 +8,7 @@ Linux的文件系统
 
 用过Windows磁盘格式化工具的读者，一定很熟悉下面的这个界面：
 
-.. image :: http://c.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=25dd9a908226cffc7d27b7e0d86821f5/64380cd7912397dd33dc740d5982b2b7d0a28716.jpg
+.. image :: static/Windows磁盘格式化工具.jpg
 
 “文件系统”下拉框里列出了NTFS、FAT32和exFAT三种文件格式。这些文件系统格式在Windows下非常常见，NTFS如今已成为Windows的默认文件系统格式。
 
