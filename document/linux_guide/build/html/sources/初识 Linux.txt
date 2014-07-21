@@ -57,7 +57,11 @@ Linux始于UNIX，却青出于蓝胜于蓝，同样拥有不俗的图形用户�
 
 Linux的标志和吉祥物是一只名字叫做Tux的企鹅，标志的由来是因为Linus在澳洲时曾被一只动物园里的企鹅咬了一口，便选择了企鹅作为Linux的标志。Linux的注册商标是Linus Torvalds所有的。这是由于在1996年，一个名字叫做William R. Della Croce的律师开始向各个Linux发布商发信，声明他拥有Linux商标的所有权，并且要求各个发布商支付版税，这些发行商集体进行上诉，要求将该注册商标重新分配给 Linus Torvalds。Linus Torvalds 一再声明 Linux 是免费的，他本人可以卖掉，但 Linux 绝不能卖。
 
+<<<<<<< HEAD
 .. image :: http://g.hiphotos.bdimg.com/album/w%3D2048/sign=435972117a899e51788e3d14769fdb33/3812b31bb051f819f0bba2a6dbb44aed2f73e744.jpg
+=======
+.. image :: static/Linux小企鹅.gif
+>>>>>>> understand-linux
 
 "谁会牵你的手，走过风风雨雨"这句歌词曾经代表着千万Linuxer的心，如今，这只可爱的小企鹅终于能独挡一面，在IBM、HP、Novell、Oracle等诸多厂商的支持下，迎着风雪傲然前行。 
 
