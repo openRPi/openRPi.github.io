@@ -66,6 +66,19 @@ Linux文件系统在windows中是不能识别的。若读者企图用Windows的�
 
 ``/bin`` 、 ``/sbin`` 、 ``/usr/bin`` 、 ``/usr/local/bin`` 这些目录相当于Windows的 ``C:\Program Files`` ，存放各种各样的可执行文件。而 ``/home/user`` 这样的用户主目录，则类似于Windows的 ``C:\Users\user`` 用于存放用户相关的数据。
 
+.. note :: 
+
+	一些专有名词的缩写：
+
+	* bin = binary（二进制，可执行文件）
+	* usr = Unix software resource    与软件安装/执行有关
+	* var = variable 变量
+	* rc = run command    运行命令
+	* etc = etcetera   此等重要的零碎事物-->系统配置文件
+	* tty = teletypewritters  (电传打字机成为唯一能够被使用的“实时”输入/输出设备)
+	* initab = initialization table    初始表
+	* dev = devices    设备
+
 .. warning :: 并不是每个Linux系统根目录都与上面举例的一模一样，有些Linux发行版会根据自身特点自行增删一些目录。
 
 Linux文件类型

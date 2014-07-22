@@ -53,7 +53,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'简明 Linux 系统指导'
-copyright = u'2014, openRPi'
+copyright = u'2014, 自由文档，由openRPi收集整理编辑'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

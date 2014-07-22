@@ -17,6 +17,10 @@ Welcome to 简明 Linux 系统指导's documentation!
 	用户与用户组
 	操作系统与应用程序
 	shell 与 shell 脚本
+	日常使用与管理
+	硬件基础
+	软件基础
+	内存管理
 	附录-Linux远程登录
 
 .. 
