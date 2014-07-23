@@ -2,7 +2,7 @@
 @import url("nature.css");
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+    font-family: verdana, Geneva, sans-serif;
     font-size: 100%;
     background-color: #111;
     color: #555;
@@ -20,8 +20,8 @@ div.body {
 }
 
 div.body p, div.body dd, div.body li {
-	line-height: 1.75em;
-	font-size: 16px;
+	line-height: 2em;
+	font-size: 1em;
 }
 
 div.sphinxsidebar {
