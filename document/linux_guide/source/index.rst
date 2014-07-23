@@ -21,6 +21,7 @@ Welcome to 简明 Linux 系统指导's documentation!
 	硬件基础
 	软件基础
 	内存管理
+	Linux进程及其管理
 	附录-Linux远程登录
 
 .. 
