@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>openRPi</title>
 <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.css" />
 <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap-theme.css" />
@@ -10,7 +10,13 @@
 <!--<link rel="stylesheet" href="Flat-UI-master/css/flat-ui.css">
 -->
 <link rel="shortcut icon" href="favicon.ico" />
-</head>
+<style type="text/css">
+<!--
+body {
+	background-color: #F7F7F7;
+}
+-->
+</style></head>
 <body>
 <!--菜单-->
 <nav class="navbar navbar-default" role="navigation" style="margin-bottom:0;">
@@ -39,7 +45,7 @@
 </nav>
 <!--结束 菜单-->
 <!--主题巨幕-->
-<div class="jumbotron" style="margin-bottom:0;padding-left:0;padding-right:0; background-color:#EDEDED">
+<div class="jumbotron" style="margin-bottom:20;padding-left:0;padding-right:0; background-color:#EDEDED">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2"> </div>
@@ -48,12 +54,8 @@
 				<p>openRPi是一个专注于嵌入式入门与兴趣培养计划的开源组织，针对嵌入式初学者量身制定学习策略</p>
 				<p style="padding-bottom:0.5em"><a href="discover.html">进一步了解 openRPi ›</a></p>
 				<div class="row">
-					<div class="col-md-5">
-						<a href="resource.html" class="btn btn-block btn-primary">浏览资源 ›</a>
-					</div>
-					<div class="col-md-4">
-						<a class="btn btn-block btn-default">购买学习板 ›</a>
-					</div>
+					<div class="col-md-5"> <a href="resource.html" class="btn btn-block btn-primary">浏览资源 ›</a> </div>
+					<div class="col-md-4"> <a class="btn btn-block btn-default">购买学习板 ›</a> </div>
 				</div>
 			</div>
 			<div class="col-md-4"><img src="images/rpi_openrpi.png" class="img-responsive" style="margin-top:50px" /></div>
@@ -61,21 +63,30 @@
 	</div>
 </div>
 <!--End 主题巨幕-->
-<div class="container-fluid" style="background-color:#F7F7F7">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2"> </div>
 		<div class="col-md-4">
 			<h2><a href="#" target="_blank">便捷的云服务 ›</a></h2>
 			<p>openRPi-cloud 让学习板充满趣味与创新</p>
+			<br />
+			<div class="row">
+				<div class="col-md-6"><img src="images/hmw.png" class="img-responsive"/> </div>
+			</div>
 		</div>
 		<div class="col-md-4">
 			<h2><a href="https://github.com/openRPi" target="_blank">开源通道 ›</a> </h2>
 			<p>openRPi 的所有代码与设计都在 github 上开源了</p>
+			<br />
+			<div class="row">
+				<div class="col-md-2"><img src="images/github.png" class="img-responsive"/> </div>
+				<div class="col-md-2"><img src="images/git.png" class="img-responsive"/> </div>
+			</div>
 		</div>
 	</div>
 </div>
 <!--页脚巨幕-->
-<div class="jumbotron" style="margin-bottom:0; padding-left:0; padding-right:0; padding-top: 1em; padding-bottom: 1em;">
+<div class="jumbotron" style="margin-bottom:0; padding-left:0; padding-right:0; padding-top: 1em; padding-bottom: 1em; margin-top: 50px;">
 	<div style="text-align:center"> © 版权所有 2014, openRPi. </div>
 </div>
 <!--End 页脚巨幕-->
