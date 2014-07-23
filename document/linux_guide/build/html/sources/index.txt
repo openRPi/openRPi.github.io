@@ -9,7 +9,7 @@ Welcome to 简明 Linux 系统指导's documentation!
 目录：
 
 .. toctree::
-	:maxdepth: 2
+	:maxdepth: 1
 	:numbered: 3
 	
 	初识 Linux
