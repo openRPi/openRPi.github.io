@@ -22,7 +22,7 @@ Linux进程
 
 	struct task_struct {
 		volatile long state;  //说明了该进程是否可以执行,还是可中断等信息
-		unsigned long flags;  //Flage 是进程号,在调用fork()时给出
+		unsigned long flags;  //Flage 是进程号,在调用fork()时给出F
 		int sigpending;    //进程上是否有待处理的信号
 		mm_segment_t addr_limit; //进程地址空间,区分内核进程与普通进程在内存存放的位置不同
 		                        //0-0xBFFFFFFF for user-thead
@@ -207,7 +207,7 @@ Virtual memory
 Processor Specific Context
 	进程可以认为是系统当前状态的总和。进程运行时，它将使用处理器的寄存器以及堆栈等等。进程被挂起时，进程的上下文——所有的CPU相关的状态必须保存在它的 ``task_struct`` 结构中。当调度器重新调度该进程时，所有上下文被重新设定。
 
-Identifiers
+权限验证
 ---------------
 
 和其他Unix一样，Linux使用用户和组标志符来检查对系统中文件和可执行映象的访问权限。Linux系统中所有的文件都有所有者和允许的权限，这些权限描叙了系统使用者对文件或者目录的使用权。基本的权限是读、写和可执行，这些权限被分配给三类用户：文件的所有者，属于相同组的进程以及系统中所有进程。每类用户具有不同的权限，例如一个文件允许其拥有者读写，但是同组的只能读而其他进程不允许访问。

@@ -25,7 +25,7 @@
     <script type="text/javascript" src="static/doctools.js"></script>
     <script type="text/javascript" src="static/translations.js"></script>
     <link rel="top" title="简明 Linux 系统指导 1.0.0 文档" href="index.html" />
-    <link rel="next" title="11. 附录-Linux远程登录" href="附录-Linux远程登录.html" />
+    <link rel="next" title="11. 进程间通讯机制" href="进程间通讯机制.html" />
     <link rel="prev" title="9. 内存管理" href="内存管理.html" /> 
   </head>
   <body>
@@ -33,7 +33,7 @@
       <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="附录-Linux远程登录.html" title="11. 附录-Linux远程登录"
+          <a href="进程间通讯机制.html" title="11. 进程间通讯机制"
              accesskey="N">下一页</a></li>
         <li class="right" >
           <a href="内存管理.html" title="9. 内存管理"
@@ -60,7 +60,7 @@
 <p>为了让Linux来管理系统中的进程，每个进程用一个 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 数据结构来表示（任务与进程在Linux中可以混用）。这个结构体非常大，在 <tt class="docutils literal"><span class="pre">/include/linux/sched.h</span></tt> 可以找到 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 的定义：</p>
 <div class="highlight-c"><div class="highlight"><pre><span class="k">struct</span> <span class="n">task_struct</span> <span class="p">{</span>
         <span class="k">volatile</span> <span class="kt">long</span> <span class="n">state</span><span class="p">;</span>  <span class="c1">//说明了该进程是否可以执行,还是可中断等信息</span>
-        <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">flags</span><span class="p">;</span>  <span class="c1">//Flage 是进程号,在调用fork()时给出</span>
+        <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">flags</span><span class="p">;</span>  <span class="c1">//Flage 是进程号,在调用fork()时给出F</span>
         <span class="kt">int</span> <span class="n">sigpending</span><span class="p">;</span>    <span class="c1">//进程上是否有待处理的信号</span>
         <span class="kt">mm_segment_t</span> <span class="n">addr_limit</span><span class="p">;</span> <span class="c1">//进程地址空间,区分内核进程与普通进程在内存存放的位置不同</span>
                                 <span class="c1">//0-0xBFFFFFFF for user-thead</span>
@@ -243,8 +243,8 @@
 <dd>进程可以认为是系统当前状态的总和。进程运行时，它将使用处理器的寄存器以及堆栈等等。进程被挂起时，进程的上下文——所有的CPU相关的状态必须保存在它的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 结构中。当调度器重新调度该进程时，所有上下文被重新设定。</dd>
 </dl>
 </div>
-<div class="section" id="identifiers">
-<h2>10.2. Identifiers<a class="headerlink" href="#identifiers" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h2>10.2. 权限验证<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>和其他Unix一样，Linux使用用户和组标志符来检查对系统中文件和可执行映象的访问权限。Linux系统中所有的文件都有所有者和允许的权限，这些权限描叙了系统使用者对文件或者目录的使用权。基本的权限是读、写和可执行，这些权限被分配给三类用户：文件的所有者，属于相同组的进程以及系统中所有进程。每类用户具有不同的权限，例如一个文件允许其拥有者读写，但是同组的只能读而其他进程不允许访问。</p>
 <p>Linux使用组将文件和目录的访问特权授予一组用户，而不是单个用户或者系统中所有进程。如可以为某个软件项目中的所有用户创建一个组，并将其权限设置成只有他们才允许读写项目中的源代码。一个进程可以同时属于多个组（最多为32个），这些组都被放在进程的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 中的 <tt class="docutils literal"><span class="pre">group</span></tt> 数组中。只要某组进程可以存取某个文件，则由此组派生出的进程对这个文件有相应的组访问权限。</p>
 <p><tt class="docutils literal"><span class="pre">task_struct</span></tt> 结构中有四对进程和组标志符：</p>
@@ -277,8 +277,8 @@
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="id3">
-<h2>10.3. 进程调度<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h2>10.3. 进程调度<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>所有进程部分时间运行于用户模式，部分时间运行于系统模式。如何支持这些模式，底层硬件的实现各不相同，但是存在一种安全机制可以使它们在用户模式和系统模式之间来回切换。用户模式的权限比系统模式下的小得多。进程通过系统调用切换到系统模式继续执行。此时核心为进程而执行。在Linux中，进程不能被抢占。只要能够运行它们就不能被停止。当进程必须等待某个系统事件时，它才决定释放出CPU。例如进程可能需要从文件中读出字符。一般等待发生在系统调用过程中，此时进程处于系统模式；处于等待状态的进程将被挂起而其他的进程被调度管理器选出来执行。</p>
 <p>进程常因为执行系统调用而需要等待。由于处于等待状态的进程还可能占用CPU时间，所以Linux采用了预加载调度策略。在此策略中，每个进程只允许运行很短的时间：200毫秒，当这个时间用完之后，系统将选择另一个进程来运行，原来的进程必须等待一段时间以继续运行。这段时间称为时间片。</p>
 <p>调度器必须选择最迫切需要运行而且可以执行的进程来执行。</p>
@@ -307,21 +307,21 @@
 <p>进程的切换发生在调度管理器运行之后。以前进程保存的上下文与当前进程加载时的上下文相同，包括进程程序计数器和寄存器内容。</p>
 <p>如果以前或者当前进程使用了虚拟内存，则系统必须更新其页表入口，这与具体体系结构有关。</p>
 </div>
-<div class="section" id="id4">
-<h2>10.4. 多处理器系统中的多任务调度<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id5">
+<h2>10.4. 多处理器系统中的多任务调度<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <p>Linux上已经做了很多工作来保证它能运行在SMP（对称多处理）机器上。Linux能够在系统中的CPU间进行合理的负载平衡调度。这里的负载平衡工作比调度管理器所做的更加明显。</p>
 <p>在多处理器系统中，人们希望每个处理器总处于工作状态。当处理器上的当前进程用完它的时间片或者等待系统资源时，各个处理器将独立运行调度管理器。SMP系统中一个值得注意的问题是系统中不止一个idle进程。在单处理器系统中，idle进程是 <tt class="docutils literal"><span class="pre">task</span></tt> 数组中的第一个任务，在SMP系统中每个CPU有一个idle进程，同时每个CPU都有一个当前进程，SMP系统必须跟踪每个处理器中的idle进程和当前进程。</p>
 <p>在SMP系统中，每个进程的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 结构中包含着当前运行它的处理器的编号以及上次运行时处理器的编号。把进程每次都调度到不同CPU上执行显然毫无意义，Linux可以使用processor_mask来使得某个进程只在一个或者几个处理器上运行:如果N位置位，则进程可在处理器N上运行。当调度管理器选择新进程运行时，它 不会考虑一个在其processor_mask中在当前处理器位没有置位的进程。同时调度管理器将给予上次在此处理器中运行的进程一些优先权，因为将进程迁移到另外处理器上运行将带来性能的损失。</p>
 </div>
-<div class="section" id="id5">
-<h2>10.5. 进程与文件<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id6">
+<h2>10.5. 进程与文件<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <img alt="images/进程与文件.gif" src="images/进程与文件.gif" />
 <p>上图给出了两个描叙系统中每个进程所使用的文件系统相关信息。第一个 <tt class="docutils literal"><span class="pre">fs_struct</span></tt> 包含了指向进程的 <tt class="docutils literal"><span class="pre">VFS</span> <span class="pre">inode</span></tt> 和其屏蔽码。这个屏蔽码值是创建新文件时所使用的缺省值，可以通过系统调用来改变。</p>
 <p>第二个数据结构 <tt class="docutils literal"><span class="pre">files_struct</span></tt> 包含了进程当前所使用的所有文件的信息。程序从标准输入中读取并写入到标准输出中去。任何错误信息将输出到标准错误输出。这些文件有些可能是真正的文件，有的则是输出/输入终端或者物理设备，但程序都将它们视为文件。每个文件有一个描叙符，<tt class="docutils literal"><span class="pre">files_struct</span></tt> 最多可以包含256个文件数据结构，它们分别描叙一个被当前进程使用的文件。<tt class="docutils literal"><span class="pre">f_mode</span></tt> 域表示文件将以何种模式创建：只读 、读写还是只写。<tt class="docutils literal"><span class="pre">f_pos</span></tt> 中包含下一次文件读写操作开始位置。<tt class="docutils literal"><span class="pre">f_inode</span></tt> 指向描叙此文件的 <tt class="docutils literal"><span class="pre">VFS</span> <span class="pre">inode</span></tt>，<tt class="docutils literal"><span class="pre">f_ops</span></tt> 指向一组可以对此文件进行操作的函数入口地址指针数组。这些抽象接口十分强大，它们使得Linux 能够支持多种文件类型。在Linux中，管道是用我们下面要讨论的机制实现的。</p>
 <p>每当打开一个文件时，位于 <tt class="docutils literal"><span class="pre">files_struct</span></tt> 中的一个空闲文件指针将被用来指向这个新的文件结构。Linux进程希望在进程启动时至少有三个文件描叙符被打开，它们是标准输入，标准输出和标准错误输出，一般进程 会从父进程中继承它们。这些描叙符用来索引进程的fd数组，所以标准输入，标准输出和标准错误输出分别对应文件描叙符0，1和2。每次对文件的存取都要通过文件数据结构中的文件操作子程序和 <tt class="docutils literal"><span class="pre">VFS</span> <span class="pre">inode</span></tt> 一起来完成。</p>
 </div>
-<div class="section" id="id6">
-<h2>10.6. 进程与虚拟内存<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id7">
+<h2>10.6. 进程与虚拟内存<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
 <p>进程的虚拟内存包括可执行代码和多个资源数据。</p>
 <p>首先加载的是程序映象，例如 <tt class="docutils literal"><span class="pre">ls</span></tt>。<tt class="docutils literal"><span class="pre">ls</span></tt> 和所有可执行映象一样，是由可执行代码和数据组成的。此映象文件包含所有加载可执行代码所需的信息，同时还将程序数据连接进入进程的虚拟内存空间。然后在执行过程中，进程定位可以使用的虚拟内存，以包含正在读取的文件内容。新分配的虚拟内存必须连接到进程已存在的虚拟内存中才能够使用。 最后Linux进程调用通用库过程，比如文件处理子程序。如果每个进程都有库过程的拷贝，那么共享就变得没有意义。而Linux可以使多个进程同时使用共享库。来自共享库的代码和数据必须连接进入进程的虚拟地址空间以及共享此库的其它进程的虚拟地址空间。</p>
 <p>任何时候进程都不同时使用包含在其虚拟内存中的所有代码和数据。虽然它可以加载在特定情况下使用的那些代码，如初始化或者处理特殊事件时，另外它也使用了共享库的部分子程序。但如果将这些没有或很少使用的代码和数据全部加载到物理内存中引起极大的浪费。如果系统中多个进程都浪费这么多资源，则会大大降低的系统效率。Linux使用请求调页技术来把那些进程需要访问的虚拟内存带入物理内存中。核心将进程页表中这些虚拟地址标记成存在但不在内存中的状态，而无需将所有代码和数据直接调入物理内存。当进程试图访问这些代码和数据时，系统硬件将产生页面错误并将控制转移到Linux核心来处理之。这样对于处理器地址空间中的每个虚拟内存区域，Linux都必须知道这些虚拟内存从何处而来以及如何将其载入内存以处理页面错误。</p>
@@ -329,19 +329,19 @@
 <img alt="images/进程的虚拟内存.gif" src="images/进程的虚拟内存.gif" />
 <p>Linux核心需要管理所有的虚拟内存地址，每个进程虚拟内存中的内容在其 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 结构中指向的 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构中描叙。进程的 <tt class="docutils literal"><span class="pre">mm_struct</span></tt> 数据结构也包含了已加载可执行映象的信息和指向进程页表 的指针。它还包含了一个指向 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 链表的指针，每个指针代表进程内的一个虚拟内存区域。</p>
 <p>此链表按虚拟内存位置来排列，上图给出了一个简单进程的虚拟内存以及管理它的核心数据结构分布图。由于那些虚拟内存区域来源各不相同，Linux使用 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 中指向一组虚拟内存处理过程的指针来抽 象此接口。通过使用这个策略，所有的进程虚拟地址可以用相同的方式处理而无需了解底层对于内存管理的区别。如当进程试图访问不存在内存区域时，系统只需要调用页面错误处理过程即可。</p>
-<p>为进程创建新虚拟内存区域或处理页面不在物理内存错误时，Linux核心重复使用进程的 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 数据结构集合。这样消耗在查找 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 上的时间直接影响了系统性能。Linux把 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 数据结构以 <em>AVL(Adelson-Velskii and Landis)树</em> <a class="footnote-reference" href="#avl" id="id7">[2]</a> 结构连接以加快速度。在这种连接中，每个 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构有一个左指针和右指针指向 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构。左边的指针指向一个更低的虚拟内存起始地址节点而右边的指针指向一个更高虚拟内存起始地址节点。为了找到某个的节点，Linux从树的根节点开始查找，直到找到正确的 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构。插入或者释放一个 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构不会消耗额外的处理时间。</p>
+<p>为进程创建新虚拟内存区域或处理页面不在物理内存错误时，Linux核心重复使用进程的 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 数据结构集合。这样消耗在查找 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 上的时间直接影响了系统性能。Linux把 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 数据结构以 <em>AVL(Adelson-Velskii and Landis)树</em> <a class="footnote-reference" href="#avl" id="id8">[2]</a> 结构连接以加快速度。在这种连接中，每个 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构有一个左指针和右指针指向 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构。左边的指针指向一个更低的虚拟内存起始地址节点而右边的指针指向一个更高虚拟内存起始地址节点。为了找到某个的节点，Linux从树的根节点开始查找，直到找到正确的 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构。插入或者释放一个 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构不会消耗额外的处理时间。</p>
 <p>当进程请求分配虚拟内存时，Linux并不直接分配物理内存。它只是创建一个 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构来描叙此虚拟内存，此结构被连接到进程的虚拟内存链表中。当进程试图对新分配的虚拟内存进行写操作时，系统将产生页面错。处理器会尝试解析此虚拟地址，但是如果找不到对应此虚拟地址的页表入口时，处理器将放弃解析并产生页面错误异常，由Linux核心来处理。Linux则查看此虚拟地址是否在当前进程的虚拟地址空间中。如果是Linux会创建正确的PTE并为此进程分配物理页面。包含在此页面中的代码或数据可能需要从文件系统或者交换磁盘上读出。然后进程将从页面错误处开始继续执行，由于物理内存已经存在，所以不会再产生页面异常。</p>
 </div>
-<div class="section" id="id8">
-<h2>10.7. 进程创建<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id9">
+<h2>10.7. 进程创建<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
 <p>系统启动时总是处于核心模式，此时只有一个进程：初始化进程。象所有进程一样，初始化进程也有一个由堆栈、寄存器等表示的机器状态。当系统中有其它进程被创建并运行时，这些信息将被存储在初始化进程的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 结构中。在系统初始化的最后，初始化进程启动一个核心线程（init）然后保留在idle状态。 如果没有任何事要做，调度管理器将运行idle进程。idle进程是唯一不是动态分配 <tt class="docutils literal"><span class="pre">task_struct``的进程，它的</span> <span class="pre">``task_struct</span></tt> 在核心构造时静态定义并且名字很怪，叫 <tt class="docutils literal"><span class="pre">init_task</span></tt>。</p>
 <p>由于是系统的第一个真正的进程，所以init核心线程（或进程）的标志符为1。它负责完成系统的一些初始化设置任务（如打开系统控制台与安装根文件系统），以及执行系统初始化程序，如 <tt class="docutils literal"><span class="pre">/etc/init</span></tt>, <tt class="docutils literal"><span class="pre">/bin/init</span></tt> 或者 <tt class="docutils literal"><span class="pre">/sbin/init</span></tt> ，这些初始化程序依赖于具体的系统。init程序使用 <tt class="docutils literal"><span class="pre">/etc/inittab</span></tt> 作为脚本文件来创建系统中的新进程。这些新进程又创建各自的新进程。例如getty进程将在用户试图登录时创建一个login进程。系统中所有进程都是从init核心线程中派生出来。</p>
 <p>新进程通过克隆老进程或当前进程来创建。系统调用 <tt class="docutils literal"><span class="pre">fork</span></tt> 或 <tt class="docutils literal"><span class="pre">clone</span></tt> 可以创建新任务，复制发生在核心状态下的核心中。在系统调用的结束处有一个新进程等待调度管理器选择它去运行。系统从物理内存中分配出来一个新的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 数据结构，同时还有一个或多个包含被复制进程堆栈（用户与核心）的物理页面。然后创建唯一地标记此新任务的进程标志符。但复制进程保留其父进程的标志符也是合理的。新创建的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 将被放入 <tt class="docutils literal"><span class="pre">task</span></tt> 数组中，另外将被复制进程的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 中的内容页表拷入新的 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 中。</p>
 <p>复制完成后，Linux允许两个进程共享资源而不是复制各自的拷贝。这些资源包括文件、信号处理过程和虚拟内存。进程对共享资源用各自的 <tt class="docutils literal"><span class="pre">count</span></tt> 来记数。在两个进程对资源的使用完毕之前，Linux绝不会释放此资源，例如复制进程要共享虚拟内存，则其 <tt class="docutils literal"><span class="pre">task_struct</span></tt> 将包含指向原来进程的 <tt class="docutils literal"><span class="pre">mm_struct</span></tt> 的指针。<tt class="docutils literal"><span class="pre">mm_struct</span></tt> 将增加 <tt class="docutils literal"><span class="pre">count</span></tt> 变量以表示当前进程共享的次数。</p>
 <p>复制进程虚拟空间所用技术的十分巧妙。复制将产生一组新的 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 结构和对应的 <tt class="docutils literal"><span class="pre">mm_struct</span></tt> 结构，同时还有被复制进程的页表。该进程的任何虚拟内存都没有被拷贝。由于进程的虚拟内存有的可能在物理内存中，有的可能在当前进程的可执行映象中，有的可能在交换文件中，所以拷贝将是一个困难且繁琐的工作。Linux使用一种&#8221;copy on write&#8221;技术：仅当两个进程之一对虚拟内存进行写操作时才拷贝此虚拟内存块。但是不管写与不写，任何虚拟内存都可以在两个进程间共享。只读属性的内存，如可执行代码，总是可以共享的。为了使&#8221;copy on write&#8221;策略工作，必须将那些可写区域的页表入口标记为只读的，同时描叙它们的 <tt class="docutils literal"><span class="pre">vm_area_struct</span></tt> 数据都被设置为&#8221;copy on write&#8221;。当进程之一试图对虚拟内存进行写操作时将产生页面错误。这时Linux将拷贝这一块内存并修改两个进程的页表以及虚拟内存数据结构。</p>
 </div>
-<div class="section" id="id9">
-<h2>10.8. 进程时钟和定时器<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h2>10.8. 进程时钟和定时器<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
 <p>核心跟踪着进程的创建时间以及在其生命期中消耗的CPU时间。每个时钟滴答时，核心将更新当前进程在系统 模式与用户模式下所消耗的时间（记录在 <tt class="docutils literal"><span class="pre">jiffies</span></tt> 中）。除了以上记时器外，Linux还支持几种进程相关的时间间隔定时器。</p>
 <p>进程可以使用这些定时器在到时时向它发送各种信号，这些定时器如下：</p>
 <dl class="docutils">
@@ -356,8 +356,8 @@
 <p>每次时钟滴答后当前进程的时间间隔定时器将递减，当到时之后将发送适当的信号。</p>
 <p>Real时钟间隔定时器的机制有些不同，这些将在kernel一章中详细讨论。每个进程有其自身的 <tt class="docutils literal"><span class="pre">timer_list</span></tt> 数据结构，当时间间隔定时器运行时，它们被排入系统的定时器链表中。当定时器到期后，底层处理过程将把它从队列中删除并调用时间间隔处理过程。此过程将向进程发送SIGALRM信号并重新启动定时器，将其重新放入系统时钟队列。</p>
 </div>
-<div class="section" id="id10">
-<h2>10.9. 程序执行<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id11">
+<h2>10.9. 程序执行<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
 <p>象Unix一样，Linux程序通过命令解释器来执行。命令解释器是一个用户进程，人们将其称为shell程序。</p>
 <p>在Linux中有多个shell程序，最流行的几个是sh、bash和tcsh。除了几个内置命令如 <tt class="docutils literal"><span class="pre">cd</span></tt> 和 <tt class="docutils literal"><span class="pre">pwd</span></tt> 外，命令都是一个可执行二进制文件。当键入一个命令时，Shell程序将搜索包含在进程PATH环境变量中查找路径中的目 录来定位这个可执行映象文件。如果找到，则它被加载且执行。shell使用上面描叙的fork机制来复制自身然后用找到的二进制可执行映象的内容来代替其子进程。一般情况下，shell将等待此命令的完成或者子进程的退出。你可以通过按下control-Z键使子进程切换到后台而shell再次开始运行。同时还可以使用shell命令 <tt class="docutils literal"><span class="pre">bg</span></tt> 将命令放入后台执行，shell将发送SIGCONT信号以重新启动进程直到进程需要进行终端输出和输入。</p>
 <p>可执行文件可以有许多格式，甚至是一个脚本文件。脚本文件需要恰当的命令解释器来处理它们；例如 <tt class="docutils literal"><span class="pre">/bin/sh</span></tt> 解释shell脚本。可执行目标文件包含可执行代码和数据，这样操作系统可以获得足够的信息将其加载到内存并执行之。Linux最常用的目标文件是ELF，但是理论上Linux可以灵活地处理几乎所有目标文件格式。</p>
@@ -389,7 +389,7 @@
 <table class="docutils footnote" frame="void" id="avl" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[2]</a></td><td>AVL树是最先发明的自平衡二叉查找树，在大量的随机数据中AVL树的表现要比一般二叉树好得多</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[2]</a></td><td>AVL树是最先发明的自平衡二叉查找树，在大量的随机数据中AVL树的表现要比一般二叉树好得多</td></tr>
 </tbody>
 </table>
 </div>
@@ -413,15 +413,16 @@
 <li class="toctree-l1"><a class="reference internal" href="软件基础.html">8. 软件基础</a></li>
 <li class="toctree-l1"><a class="reference internal" href="内存管理.html">9. 内存管理</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">10. Linux进程及其管理</a></li>
-<li class="toctree-l1"><a class="reference internal" href="附录-Linux远程登录.html">11. 附录-Linux远程登录</a></li>
+<li class="toctree-l1"><a class="reference internal" href="进程间通讯机制.html">11. 进程间通讯机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-Linux远程登录.html">12. 附录-Linux远程登录</a></li>
 </ul>
 
   <h4>上一个主题</h4>
   <p class="topless"><a href="内存管理.html"
                         title="上一章">9. 内存管理</a></p>
   <h4>下一个主题</h4>
-  <p class="topless"><a href="附录-Linux远程登录.html"
-                        title="下一章">11. 附录-Linux远程登录</a></p>
+  <p class="topless"><a href="进程间通讯机制.html"
+                        title="下一章">11. 进程间通讯机制</a></p>
   <h3>本页</h3>
   <ul class="this-page-menu">
     <li><a href="sources/Linux进程及其管理.txt"
@@ -435,7 +436,7 @@
       <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="附录-Linux远程登录.html" title="11. 附录-Linux远程登录"
+          <a href="进程间通讯机制.html" title="11. 进程间通讯机制"
              >下一页</a></li>
         <li class="right" >
           <a href="内存管理.html" title="9. 内存管理"
