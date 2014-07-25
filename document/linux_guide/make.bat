@@ -65,6 +65,10 @@ if "%1" == "html" (
 	if errorlevel 1 exit /b 1
 	echo.
 	echo.Build finished. The HTML pages are in %BUILDDIR%/html.
+	rd /q /s build\html\images
+	rd /q /s build\html\sources
+	rd /q /s build\html\static
+	python build_wraper.py
 	goto end
 )
 
