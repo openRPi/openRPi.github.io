@@ -23,7 +23,6 @@ Welcome to 简明 Linux 系统指导's documentation!
 	内存管理
 	Linux进程及其管理
 	进程间通讯机制
-	设备驱动
 	附录-Linux远程登录
 
 .. 
