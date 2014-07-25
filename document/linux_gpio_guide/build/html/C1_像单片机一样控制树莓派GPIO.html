@@ -50,9 +50,32 @@
   <div class="section" id="gpio">
 <h1>2. 像单片机一样控制树莓派GPIO<a class="headerlink" href="#gpio" title="永久链接至标题">¶</a></h1>
 <p>如同著名的“hello word”字符串一样，GPIO控制的第一个实验通常都是让某个管脚点亮一盏LED。在树莓派上，我们也这样做。</p>
-<p>我们从 <a class="reference external" href="http://www.airspayce.com/mikem/bcm2835/bcm2835-1.36.tar.gz">http://www.airspayce.com/mikem/bcm2835/bcm2835-1.36.tar.gz</a> 下载所用到的BCM2835 GPIO C语言库。这个库是国外树莓派爱好者根据BCM2835芯片资料和众多社区讨论编写的树莓派GPIO控制库，C/C++兼容。</p>
-<p>借用这个库，我们可以像控制单片机一样控制树莓派的GPIO口。</p>
+<p>首先，我们先回顾一下，在单片机上，我们是怎么控制GPIO的：</p>
+<blockquote>
+<div><p>控制常见51单片机的P1-0管脚，直接对P1-0管脚的控制寄存器赋值即可</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">sfr</span> <span class="n">P1</span>   <span class="o">=</span> <span class="mh">0x90</span><span class="p">;</span>
+<span class="n">sbit</span> <span class="n">P1_0</span> <span class="o">=</span> <span class="n">P1</span><span class="o">^</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="n">P1_0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">// P1_0 = 1;</span>
+</pre></div>
+</div>
+<p>P1_0 管脚输出寄存器位于RAM空间物理地址 <tt class="docutils literal"><span class="pre">0x91</span></tt> ，用C语言往这个物理地址写数据即可控制P1_0的输出电平。</p>
+</div></blockquote>
+<p>借鉴这个思路，我们要控制树莓派上某个GPIO，也是往它控制寄存器的物理地址上写数据即可。但由于树莓派运行着Linux系统的原因，操作系统把所有的硬件资源的管理起来了，GPIO的物理地址并不能直接被我们的代码访问到，其中需要经过地址转换的过程。关于这部分的内容，这里不做详细讨论，读者可阅读以下文章了解：</p>
+<ul class="simple">
+<li><a class="reference external" href="../../../linux_guide/build/html/操作系统与应用程序.html">《简明Linux系统指导·操作系统与应用程序》</a></li>
+<li><a class="reference external" href="../../../linux_guide/build/html/硬件基础.html">《简明Linux系统指导·硬件基础》</a></li>
+<li><a class="reference external" href="../../../linux_guide/build/html/内存管理.html">《简明Linux系统指导·内存管理》</a></li>
+<li><a class="reference external" href="../../../linux_guide/build/html/设备驱动.html">《简明Linux系统指导·设备驱动》</a></li>
+</ul>
+<p>因为刚才提到的地址转换是如此的麻烦，国外树莓派爱好者根据BCM2835芯片资料和众多社区讨论编写了树莓派GPIO控制C语言库BCM2835 GPIO C Library。它封装了地址转换过程，我们可以直接调用库函数控制GPIO。</p>
+<p>下载地址： <a class="reference external" href="http://www.airspayce.com/mikem/bcm2835/bcm2835-1.36.tar.gz">http://www.airspayce.com/mikem/bcm2835/bcm2835-1.36.tar.gz</a></p>
 <p>第一个实验，闪烁一盏LED，git仓库 <a class="reference external" href="https://github.com/openRPi/gpio/tree/master/basic/blink">https://github.com/openRPi/gpio/tree/master/basic/blink</a>。读者可以直接编译运行代码，观察LED的闪烁。</p>
+<div class="highlight-shell"><div class="highlight"><pre>$ make
+$ sudo ./blink_run.exe
+</pre></div>
+</div>
 <p>代码中核心的几个GPIO控制函数</p>
 <ol class="arabic simple">
 <li><tt class="docutils literal"><span class="pre">int</span> <span class="pre">bcm2835_init(void)</span></tt> 初始化GPIO</li>
