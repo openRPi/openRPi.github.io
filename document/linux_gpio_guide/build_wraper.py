@@ -4,13 +4,7 @@ import os
 
 replace_tuple = [
 	("_static/","static/"),
-	("_sources/", "sources/"),
-	("_images/","images/")]
-
-rename_tuple = [
-	("_static","static"),
-	("_sources", "sources"),
-	("_images","images")]
+	("_sources/", "sources/")]
 
 def filter_html(name):
 	ext = os.path.splitext(name) [1] 
@@ -21,9 +15,10 @@ def filter_html(name):
 
 os.chdir(os.path.join("build","html"))
 
-for old,new in rename_tuple:
-	if os.path.exists(new):
-		os.removedirs(new)
+if os.path.exists("static"):
+	os.removedirs("static")
+if os.path.exists("sources"):
+	os.removedirs("sources")
 
 for root, dirs, files in os.walk("."):
 	html_files = filter(filter_html, files)
@@ -38,6 +33,8 @@ for root, dirs, files in os.walk("."):
 			fd.write(all_string[0])
 		print os.path.join(root,f)
 
-for old,new in rename_tuple:
-	if os.path.exists(old):
-		os.rename(old,new)
+if os.path.exists("_static"):
+	os.rename("_static", "static")
+if os.path.exists("_sources"):
+	os.rename("_sources", "sources")
+

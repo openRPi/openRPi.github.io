@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8. 附录 - 交叉编译新内核和驱动模块 &mdash; 简明 Linux GPIO驱动指导 1.0.0 文档</title>
+    <title>8. 附录 - 交叉编译新内核和驱动模块 &mdash; 简明 Linux GPIO 指导 1.0.0 documentation</title>
     
-    <link rel="stylesheet" href="static/nature_overwrite.css" type="text/css" />
+    <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,20 +23,70 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="static/translations.js"></script>
-    <link rel="top" title="简明 Linux GPIO驱动指导 1.0.0 文档" href="index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="简明 Linux GPIO 指导 1.0.0 documentation" href="index.html" />
     <link rel="prev" title="7. 附录 - 建立树莓派交叉编译环境" href="附录-建立树莓派交叉编译环境.html" /> 
   </head>
   <body>
     <div class="related">
-      <h3>导航</h3>
+      <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
           <a href="附录-建立树莓派交叉编译环境.html" title="7. 附录 - 建立树莓派交叉编译环境"
-             accesskey="P">上一页</a></li>
-        <li><a href="index.html">简明 Linux GPIO驱动指导 1.0.0 文档</a> &raquo;</li> 
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">8. 附录 - 交叉编译新内核和驱动模块</a><ul>
+<li><a class="reference internal" href="#id2">8.1. 建立交叉编译环境</a></li>
+<li><a class="reference internal" href="#id4">8.2. 准备交叉编译需要的代码</a><ul>
+<li><a class="reference internal" href="#linux">8.2.1. Linux 内核源代</a></li>
+<li><a class="reference internal" href="#config">8.2.2. .config 内核配置文件</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">8.3. 开始交叉编译</a></li>
+<li><a class="reference internal" href="#id6">8.4. 启用 .config 的配置</a><ul>
+<li><a class="reference internal" href="#id7">8.4.1. 交叉编译所有代码:</a></li>
+<li><a class="reference internal" href="#id8">8.4.2. 复制编译好的内核映像</a></li>
+<li><a class="reference internal" href="#id9">8.4.3. 处理内核映像：</a></li>
+<li><a class="reference internal" href="#id10">8.4.4. 导出编译好的驱动模块：</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11">8.5. 安装全新的内核映像、固件和驱动模块</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="附录-建立树莓派交叉编译环境.html"
+                        title="previous chapter">7. 附录 - 建立树莓派交叉编译环境</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/附录-交叉编译新内核和驱动模块.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -44,15 +94,15 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>8. 附录 - 交叉编译新内核和驱动模块<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>8. 附录 - 交叉编译新内核和驱动模块<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
-<h2>8.1. 建立交叉编译环境<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>8.1. 建立交叉编译环境<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>这部分内容，参见 <a class="reference external" href="附录-建立树莓派交叉编译环境.html">附录-建立树莓派交叉编译环境</a></p>
 </div>
 <div class="section" id="id4">
-<h2>8.2. 准备交叉编译需要的代码<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<h2>8.2. 准备交叉编译需要的代码<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="linux">
-<h3>8.2.1. Linux 内核源代<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h3>
+<h3>8.2.1. Linux 内核源代<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
 <p>git仓库位于 <a class="reference external" href="https://github.com/raspberrypi/linux">https://github.com/raspberrypi/linux</a>
 把源码克隆到 <tt class="docutils literal"><span class="pre">~/project/git/rpi_linux</span></tt> 目录：</p>
 <div class="highlight-shell"><div class="highlight"><pre>$ cd ~/project/git
@@ -66,7 +116,7 @@ $ make mrprope
 </div>
 </div>
 <div class="section" id="config">
-<h3>8.2.2. .config 内核配置文件<a class="headerlink" href="#config" title="永久链接至标题">¶</a></h3>
+<h3>8.2.2. .config 内核配置文件<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
 <p>.config文件是编译一个linux镜像文件的蓝图脚本，负责保存对于特定系统的内容配置，它放在了linux文件树下的顶层文件中。</p>
 <p>实际上，我们已经提供了一套完整的配置和编译结果，但这里只须用到 config 配置文件：</p>
 <ul class="simple">
@@ -88,20 +138,20 @@ $ mv ~/project/git/rpi_linux/config   ~/project/git/rpi_linux/.config
 </div>
 </div>
 <div class="section" id="id5">
-<h2>8.3. 开始交叉编译<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<h2>8.3. 开始交叉编译<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>接下来的所有命令，都在 <tt class="docutils literal"><span class="pre">~/project/git/rpi_linux</span></tt> 源码目录下执行。</p>
 <div class="highlight-shell"><div class="highlight"><pre>$ cd ~/project/git/rpi_linux
 </pre></div>
 </div>
 </div>
 <div class="section" id="id6">
-<h2>8.4. 启用 .config 的配置<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<h2>8.4. 启用 .config 的配置<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell"><div class="highlight"><pre>$ make oldconfig ARCH=arm CROSS_COMPILE=arm-bcm2708-linux-gnueabi-
 </pre></div>
 </div>
 <p>这一步可能会弹出一些询问选项。这是因为内核源码经过了更新，多出了一些 .config 中没有涉及到的配置，这时候 make 指令便询问用户是否启用新配置。我们全部选择默认值，也就是不停地回车，直到 make 命令结束。</p>
 <div class="section" id="id7">
-<h3>8.4.1. 交叉编译所有代码:<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<h3>8.4.1. 交叉编译所有代码:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-shell"><div class="highlight"><pre>$ make ARCH=arm CROSS_COMPILE=arm-bcm2708-linux-gnueabi- -j3
 </pre></div>
 </div>
@@ -109,14 +159,14 @@ $ mv ~/project/git/rpi_linux/config   ~/project/git/rpi_linux/.config
 <p>make 执行结束后，内核映像和驱动模块都编译好了，但它们分散在源代码的各个目录下，我们需要将它们分别取出。</p>
 </div>
 <div class="section" id="id8">
-<h3>8.4.2. 复制编译好的内核映像<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<h3>8.4.2. 复制编译好的内核映像<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>内核映像名为 zImage ，位于目录 <tt class="docutils literal"><span class="pre">~/project/git/rpi_linux/arch/arm/boot</span></tt> 下。我们将它复制到目录 <tt class="docutils literal"><span class="pre">~/project/git/openRPi/linux_generate</span></tt> 。</p>
 <div class="highlight-shell"><div class="highlight"><pre>$ cp ~/project/git/rpi_linux/arch/arm/boot/zImage    ~/project/git/openRPi/linux_generate
 </pre></div>
 </div>
 </div>
 <div class="section" id="id9">
-<h3>8.4.3. 处理内核映像：<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<h3>8.4.3. 处理内核映像：<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>此时，zImage映像还不能直接使用，需要处理成树莓派适用的格式 kernel.img。官方给出了处理工具，路径位于 <tt class="docutils literal"><span class="pre">~/project/git/rpi_tools/mkimage/imagetool-uncompressed.py</span></tt>。这是一个 Python 脚本。不太方便的地方是，这个工具只能处理同目录下的zImage，因此我们应该先把zImage复制到同目录下，处理生成 kernel.img。</p>
 <div class="highlight-shell"><div class="highlight"><pre>$ cp ~/project/git/openRPi/linux_generate/zImage  ~/project/git/rpi_tools/mkimage
 $ cd ~/project/git/rpi_tools/mkimage
@@ -129,7 +179,7 @@ $ python imagetool-uncompressed.py  zImage
 </div>
 </div>
 <div class="section" id="id10">
-<h3>8.4.4. 导出编译好的驱动模块：<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<h3>8.4.4. 导出编译好的驱动模块：<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-shell"><div class="highlight"><pre>$ make modules_install ARCH=arm CROSS_COMPILE=arm-bcm2708-linux-gnueabi- INSTALL_MOD_PATH=~/project/git/openRPi/linux_generate
 </pre></div>
 </div>
@@ -165,7 +215,7 @@ $ python imagetool-uncompressed.py  zImage
 </div>
 </div>
 <div class="section" id="id11">
-<h2>8.5. 安装全新的内核映像、固件和驱动模块<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<h2>8.5. 安装全新的内核映像、固件和驱动模块<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <p>覆盖树莓派对应的文件（夹）即可</p>
 </div>
 </div>
@@ -174,51 +224,23 @@ $ python imagetool-uncompressed.py  zImage
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-<h3><a href="index.html">內容目录</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="C0_前言.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C1_像单片机一样控制树莓派GPIO.html">2. 像单片机一样控制树莓派GPIO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C2_充满Linux风格地控制树莓派GPIO.html">3. 充满Linux风格地控制树莓派GPIO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C3_真正的GPIO内核驱动.html">4. 真正的GPIO内核驱动</a></li>
-<li class="toctree-l1"><a class="reference internal" href="附录-GPIO Interfaces.html">5. 附录 - GPIO Interfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="附录-树莓派GPIO编号.html">6. 附录 - 树莓派GPIO编号</a></li>
-<li class="toctree-l1"><a class="reference internal" href="附录-建立树莓派交叉编译环境.html">7. 附录 - 建立树莓派交叉编译环境</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">8. 附录 - 交叉编译新内核和驱动模块</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">8.1. 建立交叉编译环境</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">8.2. 准备交叉编译需要的代码</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">8.3. 开始交叉编译</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">8.4. 启用 .config 的配置</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">8.5. 安装全新的内核映像、固件和驱动模块</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>上一个主题</h4>
-  <p class="topless"><a href="附录-建立树莓派交叉编译环境.html"
-                        title="上一章">7. 附录 - 建立树莓派交叉编译环境</a></p>
-  <h3>本页</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/附录-交叉编译新内核和驱动模块.txt"
-           rel="nofollow">显示源代码</a></li>
-  </ul>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>导航</h3>
+      <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
           <a href="附录-建立树莓派交叉编译环境.html" title="7. 附录 - 建立树莓派交叉编译环境"
-             >上一页</a></li>
-        <li><a href="index.html">简明 Linux GPIO驱动指导 1.0.0 文档</a> &raquo;</li> 
+             >previous</a> |</li>
+        <li><a href="index.html">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; 版权所有 2014, 自由文档，由openRPi收集整理编辑.
-      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 创建。
+        &copy; Copyright 2014, openRPi.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>
