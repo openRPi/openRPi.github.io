@@ -6,9 +6,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. 充满Linux风格地控制树莓派GPIO &mdash; 简明 Linux GPIO 指导 1.0.0 documentation</title>
+    <title>3. 充满Linux风格地控制树莓派GPIO &mdash; 简明 Linux GPIO驱动指导 1.0.0 文档</title>
     
-    <link rel="stylesheet" href="static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="static/nature_overwrite.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -23,65 +23,24 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="简明 Linux GPIO 指导 1.0.0 documentation" href="index.html" />
+    <script type="text/javascript" src="static/translations.js"></script>
+    <link rel="top" title="简明 Linux GPIO驱动指导 1.0.0 文档" href="index.html" />
     <link rel="next" title="4. 真正的GPIO内核驱动" href="C3_真正的GPIO内核驱动.html" />
     <link rel="prev" title="2. 像单片机一样控制树莓派GPIO" href="C1_像单片机一样控制树莓派GPIO.html" /> 
   </head>
   <body>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
           <a href="C3_真正的GPIO内核驱动.html" title="4. 真正的GPIO内核驱动"
-             accesskey="N">next</a> |</li>
+             accesskey="N">下一页</a></li>
         <li class="right" >
           <a href="C1_像单片机一样控制树莓派GPIO.html" title="2. 像单片机一样控制树莓派GPIO"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
+             accesskey="P">上一页</a> |</li>
+        <li><a href="index.html">简明 Linux GPIO驱动指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">3. 充满Linux风格地控制树莓派GPIO</a><ul>
-<li><a class="reference internal" href="#led">3.1. 徒手点亮一盏LED</a></li>
-<li><a class="reference internal" href="#id1">3.2. 按键检测和中断</a></li>
-<li><a class="reference internal" href="#gpio">3.3. GPIO控制的原理</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="C1_像单片机一样控制树莓派GPIO.html"
-                        title="previous chapter">2. 像单片机一样控制树莓派GPIO</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="C3_真正的GPIO内核驱动.html"
-                        title="next chapter">4. 真正的GPIO内核驱动</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/C2_充满Linux风格地控制树莓派GPIO.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -89,7 +48,7 @@
           <div class="body">
             
   <div class="section" id="linuxgpio">
-<h1>3. 充满Linux风格地控制树莓派GPIO<a class="headerlink" href="#linuxgpio" title="Permalink to this headline">¶</a></h1>
+<h1>3. 充满Linux风格地控制树莓派GPIO<a class="headerlink" href="#linuxgpio" title="永久链接至标题">¶</a></h1>
 <p>上一章，我们为读者展示了如何像操作单片机一样操作树莓派GPIO。但仅仅只是操作而已，上一章并未告诉读者Linux GPIO的控制机制到底是如何运作的。BCM2835函数库已经把所有与GPIO相关的细节封装起来了，读者调用一些相关的函数控制GPIO。在这一章，我们抛开BCM2835函数库，自行实现几个GPIO控制的小实验，初探GPIO控制的内幕。</p>
 <p>在Linux用户态（<em>内核态、用户态和接口？</em>）控制GPIO，通常有三种方式</p>
 <ol class="arabic simple">
@@ -98,7 +57,7 @@
 <li>使用sysfs（<em>这是什么？</em>）系统接口</li>
 </ol>
 <div class="section" id="led">
-<h2>3.1. 徒手点亮一盏LED<a class="headerlink" href="#led" title="Permalink to this headline">¶</a></h2>
+<h2>3.1. 徒手点亮一盏LED<a class="headerlink" href="#led" title="永久链接至标题">¶</a></h2>
 <p>是的，借助sysfs接口，现在我们可以仅仅依靠几条Linux终端命令，点亮一盏LED。这盏LED连接在P1-11管脚，GPIO编号17，高电平点亮。我们进入 <tt class="docutils literal"><span class="pre">/sys/class/gpio</span></tt> 目录，这里是GPIO的控制接口所在地。</p>
 <div class="highlight-shell"><div class="highlight"><pre>pi@raspberrypi ~ $ cd /sys/class/gpio/
 pi@raspberrypi ~ $ ls
@@ -158,11 +117,11 @@ export  gpiochip0  unexport
 </ul>
 </div>
 <div class="section" id="id1">
-<h2>3.2. 按键检测和中断<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>3.2. 按键检测和中断<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <p>？</p>
 </div>
 <div class="section" id="gpio">
-<h2>3.3. GPIO控制的原理<a class="headerlink" href="#gpio" title="Permalink to this headline">¶</a></h2>
+<h2>3.3. GPIO控制的原理<a class="headerlink" href="#gpio" title="永久链接至标题">¶</a></h2>
 <p>树莓派的CPU是ARM架构的（<em>什么是ARM架构？</em>）。这种架构的机器把GPIO的控制寄存器和运行RAM看成一体。也是就说，在ARM架构的CPU看来，GPIO控制寄存器同样位于运行RAM的地址空间，CPU可以像访问RAM一样访问GPIO控制寄存器。</p>
 <p>在树莓派的/dev目录下，存在一个特殊的设备接口———— <tt class="docutils literal"><span class="pre">/dev/mem</span></tt>，它是树莓派物理内存的全映像，可以用来从用户空间访问物理内存。BCM2835函数库就是利用了 <tt class="docutils literal"><span class="pre">/dev/mem</span></tt> 设备接口，实现从用户空间控制GPIO。</p>
 <p>当我们需要将某GPIO置位/复位时，通常经历了以下几个步骤：</p>
@@ -218,26 +177,55 @@ export  gpiochip0  unexport
           </div>
         </div>
       </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">內容目录</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="C0_前言.html">1. 前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C1_像单片机一样控制树莓派GPIO.html">2. 像单片机一样控制树莓派GPIO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">3. 充满Linux风格地控制树莓派GPIO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#led">3.1. 徒手点亮一盏LED</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">3.2. 按键检测和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpio">3.3. GPIO控制的原理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="C3_真正的GPIO内核驱动.html">4. 真正的GPIO内核驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-GPIO Interfaces.html">5. 附录 - GPIO Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-树莓派GPIO编号.html">6. 附录 - 树莓派GPIO编号</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-建立树莓派交叉编译环境.html">7. 附录 - 建立树莓派交叉编译环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="附录-交叉编译新内核和驱动模块.html">8. 附录 - 交叉编译新内核和驱动模块</a></li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="C1_像单片机一样控制树莓派GPIO.html"
+                        title="上一章">2. 像单片机一样控制树莓派GPIO</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="C3_真正的GPIO内核驱动.html"
+                        title="下一章">4. 真正的GPIO内核驱动</a></p>
+  <h3>本页</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/C2_充满Linux风格地控制树莓派GPIO.txt"
+           rel="nofollow">显示源代码</a></li>
+  </ul>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>导航</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
           <a href="C3_真正的GPIO内核驱动.html" title="4. 真正的GPIO内核驱动"
-             >next</a> |</li>
+             >下一页</a></li>
         <li class="right" >
           <a href="C1_像单片机一样控制树莓派GPIO.html" title="2. 像单片机一样控制树莓派GPIO"
-             >previous</a> |</li>
-        <li><a href="index.html">简明 Linux GPIO 指导 1.0.0 documentation</a> &raquo;</li> 
+             >上一页</a> |</li>
+        <li><a href="index.html">简明 Linux GPIO驱动指导 1.0.0 文档</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, openRPi.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+        &copy; 版权所有 2014, 自由文档，由openRPi收集整理编辑.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2 创建。
     </div>
   </body>
 </html>
