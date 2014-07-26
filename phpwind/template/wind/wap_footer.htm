@@ -1,0 +1,31 @@
+<!--<?php
+print <<<EOT
+-->
+<p>
+<!--
+EOT;
+if($prog!='index'){print <<<EOT
+-->
+<anchor>·µ»Ø<prev/></anchor> <a href="index.php">Ê×Ò³</a><br/>
+<!--
+EOT;
+}
+if($prog!='login' && $prog!='quit'){
+if($windid){print <<<EOT
+-->
+<a href="index.php?prog=quit">$windid ÍË³ö</a>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<a href="index.php?prog=login">µÇÂ¼</a>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</p>
+<p><small><b>phpwind</b> V$wind_version</small></p>
+</card></wml>
+<!--
+EOT;
+?>-->

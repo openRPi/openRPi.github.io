@@ -1,0 +1,9 @@
+<?php
+$setformdb=array(
+	'1' => array(
+		'id' => '1',
+		'name' => '³ö×âÐÅÏ¢',
+		'value' => false,
+	),
+);
+?>

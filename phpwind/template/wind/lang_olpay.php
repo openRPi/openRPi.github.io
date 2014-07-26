@@ -1,0 +1,25 @@
+<?php
+!function_exists('readover') && exit('Forbidden');
+
+$lang['olpay'] = array(
+	
+	'olpay_0_title'		=> '»ý·Ö³äÖµ(¶©µ¥ºÅ£º$L[order_no])',
+	'olpay_0_content'	=> '¹ºÂòÂÛÌ³{$GLOBALS[creditName]}(ÂÛÌ³UID£º$GLOBALS[winduid])',
+
+	'olpay_1_title'		=> 'µÀ¾ß¹ºÂò(¶©µ¥ºÅ£º$L[order_no])',
+	'olpay_1_content'	=> '¹ºÂòÂÛÌ³µÀ¾ß{$GLOBALS[toolinfo][name]}(ÂÛÌ³UID£º$GLOBALS[winduid])',
+
+	'olpay_2_title'		=> '°æ¿é·ÃÎÊÈ¨ÏÞ¹ºÂò(¶©µ¥ºÅ£º$L[order_no])',
+	'olpay_2_content'	=> '¹ºÂò°æ¿é£¨{$GLOBALS[fname]}£©µÄ·ÃÎÊÈ¨ÏÞ(ÂÛÌ³UID£º$GLOBALS[winduid])',
+
+	'olpay_3_title'		=> 'ÌØÊâ×é¹ºÂò(¶©µ¥ºÅ£º$L[order_no])',
+	'olpay_3_content'	=> '¹ºÂòÂÛÌ³ÌØÊâÓÃ»§×é£¨{$GLOBALS[grouptitle]}£©Éí·Ý(ÂÛÌ³UID£º$GLOBALS[winduid])',
+
+	'olpay_4_title'		=> '×¢²áÂë¹ºÂò(¶©µ¥ºÅ£º$L[order_no])',
+	'olpay_4_content'	=> '¹ºÂòÂÛÌ³×¢²áÂë',
+	
+	// ¿×Ã÷µÆ by chenyun 2011-07-8
+	'olpay_5_title'		=> '¿×Ã÷µÆ¹ºÂò(¶©µ¥ºÅ£º$L[order_no])',
+	'olpay_5_content'	=> '¹ºÂòÂÛÌ³¿×Ã÷µÆ',
+);
+?>
