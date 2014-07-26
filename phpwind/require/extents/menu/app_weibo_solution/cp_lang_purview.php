@@ -1,6 +1,0 @@
-<?php
-!defined('P_W') && exit('Forbidden');
-
-unset($purview['sinaweibo']); //for compatible
-$purview['platformweiboapp'] = array('ÕÊºÅÍ¨',"$admin_file?adminjob=app&admintype=platformweiboapp");
-?>
