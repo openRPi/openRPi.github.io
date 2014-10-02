@@ -1,4 +1,0 @@
-附录 - 树莓派GPIO编号
-===================
-
-.. image :: https://camo.githubusercontent.com/c59363e6bebdc5d6acbfb042a5b7bd09bf474abd/687474703a2f2f776972696e6770692e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031332f30332f6770696f312e706e67
